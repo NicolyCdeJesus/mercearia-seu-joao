@@ -9,7 +9,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="produto.png" />
+    <None Remove="Prova 60 %281%29.png" />
+    <None Remove="sair.png" />
+    <None Remove="usuario.jpg" />
+    <None Remove="venda.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\mercearia-seu-joao.Controller\mercearia-seu-joao.Controller.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="produto.png" />
+    <Resource Include="Prova 60 (1).png" />
+    <Resource Include="sair.png" />
+    <Resource Include="usuario.jpg" />
+    <Resource Include="venda.png" />
   </ItemGroup>
 
 </Project>
