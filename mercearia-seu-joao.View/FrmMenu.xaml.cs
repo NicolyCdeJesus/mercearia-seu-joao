@@ -25,6 +25,16 @@ namespace mercearia_seu_joao.View
             txtUsuarioData.Text = "";
         }
 
+        private void FuncionarioGerente()
+        {
+
+        }
+
+        private void FuncionarioCaixa()
+        {
+
+        }
+        
         private void Vender(object sender, RoutedEventArgs e)
         {
             //FrmVenderProduto frmLogin = new FrmProduto();
