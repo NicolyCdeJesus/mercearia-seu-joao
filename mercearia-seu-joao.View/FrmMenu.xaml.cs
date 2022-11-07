@@ -27,30 +27,29 @@ namespace mercearia_seu_joao.View
 
         private void FuncionarioGerente()
         {
-
+            if (TipoUsuario == UsuarioGerente)
+            {
+                btnProduto.Visibility = Visibility.Visible;
+                btnUsuario.Visibility = Visibility.Visible;
+                btnVender.Visibility = Visibility.Visible;
+            }
         }
 
         private void FuncionarioCaixa()
         {
-
+            if (TipoUsuario == UsuarioCaixa)
+            {
+                btnProduto.Visibility = Visibility.Hidden;
+                btnUsuario.Visibility = Visibility.Hidden;
+                btnVender.Visibility = Visibility.Visible;
+            }
         }
-        
+
         private void Vender(object sender, RoutedEventArgs e)
         {
-            //FrmVenderProduto frmLogin = new FrmProduto();
-            //frmVenderProduto.Show();
-        }
+            FrmVenderProduto frmVenderProduto = new FrmVenderProduto();
+            frmVenderProduto.Show();
 
-        private void ProdutosEntrar(object sender, RoutedEventArgs e)
-        {
-            //FrmLogin frmLogin = new FrmLogin();
-            //frmLogin.Show();
-        }
-
-        private void UsuarioEntrar(object sender, RoutedEventArgs e)
-        {
-            //FrmGerenciarUsuario frmGerenciarUsuario = new FrmGerenciarUsuario();
-            //frmGerenciarUsuario.Show();
         }
 
         private void Sair(object sender, RoutedEventArgs e)
@@ -60,8 +59,12 @@ namespace mercearia_seu_joao.View
             // Abre a janela do jogo da velha.
             //frmLogin.Show();
 
+        }
 
-
+        private void UsuarioEntrar(object sender, RoutedEventArgs e)
+        {
+            //FrmGerenciarUsuario frmGerenciarUsuario = new FrmGerenciarUsuario();
+            //frmGerenciarUsuario.Show();
         }
     }
 }
