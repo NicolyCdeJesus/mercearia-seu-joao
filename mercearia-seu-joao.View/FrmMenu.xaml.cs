@@ -29,13 +29,13 @@ namespace mercearia_seu_joao.View
 
         private void FuncionarioGerente()
         {
-            /* if (Usuarios == UsuarioGerente)
+          /*if (tipoUsuario.Equals("Gerente")
              {
                  btnProduto.Visibility = Visibility.Visible;
                  btnUsuario.Visibility = Visibility.Visible;
                  btnVender.Visibility = Visibility.Visible;
              }
-            */
+          */
         }
 
         private void FuncionarioCaixa()

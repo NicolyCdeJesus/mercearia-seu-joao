@@ -33,7 +33,7 @@
                 <ImageBrush ImageSource="/usuario.jpg"/>
             </Button.Background>
         </Button>
-        <Image x:Name="imgLogo" HorizontalAlignment="Left" Margin="120,0,0,227" Width="316" Source="/Prova 60 (1).png" OpacityMask="Black" RenderTransformOrigin="1,1" Height="290" VerticalAlignment="Bottom" Grid.Column="1"/>
+        <Image x:Name="imgLogo" HorizontalAlignment="Center" Margin="-70,0,0,227" Width="316" Source="/Prova 60 (1).png" OpacityMask="Black" RenderTransformOrigin="1,1" Height="290" VerticalAlignment="Bottom" Grid.Column="1"/>
         <TextBlock x:Name="txtProdutos" HorizontalAlignment="Left" Margin="38,335,0,0" TextWrapping="Wrap" Text="Produtos" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel" Grid.Column="1"/>
         <TextBlock x:Name="txtUusario" HorizontalAlignment="Left" Margin="254,335,0,0" TextWrapping="Wrap" Text="Usuário" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel" Grid.Column="1"/>
         <TextBlock x:Name="txtEfetuarVenda" HorizontalAlignment="Center" Margin="367,339,0,0" TextWrapping="Wrap" Text="Efetuar Venda" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel" Grid.Column="1"/>
