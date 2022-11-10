@@ -24,5 +24,10 @@ namespace mercearia_seu_joao.View
         {
             InitializeComponent();
         }
+
+        internal void Show()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

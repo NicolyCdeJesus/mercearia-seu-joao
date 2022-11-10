@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mercearia_seu_joao.Model;
+using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,36 +24,83 @@ namespace mercearia_seu_joao.View
         public FrmMenu()
         {
             InitializeComponent();
-            txtUsuarioData.Text = "";
+            //txtUsuarioData.Text = $"Olá {nome}, hoje é dia {DateTime.Now.ToShortDateString()}";
         }
 
-        private void Vender(object sender, RoutedEventArgs e)
+        public void ValidarLogin()
         {
-            //FrmVenderProduto frmLogin = new FrmProduto();
-            //frmVenderProduto.Show();
+            var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
+            try
+            {
+                conexao.Open();
+                var comando = conexao.CreateCommand();
+                comando.CommandText = @"
+            select from Usuario where tipoUsuario = @tipoUsuario and nome = @nome";
+              
+                var leitura = comando.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            finally
+            {
+                if (conexao.State == System.Data.ConnectionState.Open)
+                {
+                    conexao.Close();
+                }
+            }
+                     
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+
+        private void FuncionarioGerente()
+        {
+          /* if (DiferencaUsuario() =! true)
+             {
+                 btnProduto.Visibility = Visibility.Visible;
+                 btnUsuario.Visibility = Visibility.Visible;
+                 btnVender.Visibility = Visibility.Visible;
+             }
+          */
+         
         }
 
-        private void ProdutosEntrar(object sender, RoutedEventArgs e)
+        private void FuncionarioCaixa()
         {
-            //FrmLogin frmLogin = new FrmLogin();
-            //frmLogin.Show();
+            /*if (DiferencaUsuario() = true)
+            {
+                btnProduto.Visibility = Visibility.Hidden;
+                btnUsuario.Visibility = Visibility.Hidden;
+                btnVender.Visibility = Visibility.Visible;
+            }
+             */
+        }
+
+        private void TelaProdutos(object sender, RoutedEventArgs e)
+        {
+            //FrmGerenciarProduto frmGerenciarProduto = new FrmGerenciarProduto();
+            //frmGerenciarProduto.Show();
         }
 
         private void UsuarioEntrar(object sender, RoutedEventArgs e)
         {
             //FrmGerenciarUsuario frmGerenciarUsuario = new FrmGerenciarUsuario();
-            //frmGerenciarUsuario.Show();
+           // frmGerenciarUsuario.Show();
+        }
+
+        private void EfetuarVenda(object sender, RoutedEventArgs e)
+        {
+            FrmVenderProduto frmVenderProduto = new FrmVenderProduto();
+            frmVenderProduto.Show();
         }
 
         private void Sair(object sender, RoutedEventArgs e)
-        {           
+        {
             Close();
-            //MainWindow frmLogin = new MainWindow();
-            // Abre a janela do jogo da velha.
-            //frmLogin.Show();
+            MainWindow MainWindow = new MainWindow();
+            MainWindow.Show();
 
-
-
-        }
+        }       
     }
 }
