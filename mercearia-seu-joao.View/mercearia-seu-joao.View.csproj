@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\mercearia-seu-joao.Controller\mercearia-seu-joao.Controller.csproj" />
+    <ProjectReference Include="..\mercearia-seu-joao.Model\mercearia-seu-joao.Model.csproj" />
   </ItemGroup>
 
   <ItemGroup>
