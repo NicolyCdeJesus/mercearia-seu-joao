@@ -13,3 +13,14 @@ public class Usuario
     public string senha { get; set; }
     public string confirmaSenha { get; set; }
 }
+public class UsuarioCaixa
+{
+    public int id { get; set; }
+    public string emailCaixa { get; set; }
+}
+
+public class UsuarioGerente
+{
+    public int id { get; set; }
+    public string emailCaixa { get; set; }
+}
