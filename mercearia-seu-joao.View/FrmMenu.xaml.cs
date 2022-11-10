@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mercearia_seu_joao.Model;
+using MySqlConnector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,11 +27,36 @@ namespace mercearia_seu_joao.View
             //txtUsuarioData.Text = $"Olá {Usuario}, hoje é dia {DateTime.Now.ToShortDateString()}";
         }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+        public void ValidarLogin()
+        {
+            var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
+            try
+            {
+                conexao.Open();
+                var comando = conexao.CreateCommand();
+                comando.CommandText = @"
+            select * from Usuario where tipoUsuario = @tipoUsuario";
+            var leitura = comando.ExecuteReader();
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            finally
+            {
+                if (conexao.State == System.Data.ConnectionState.Open)
+                {
+                    conexao.Close();
+                }
+            }
+                     
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
         private void FuncionarioGerente()
         {
-          /*if (tipoUsuario.Equals("Gerente")
+          /*if (tipoUsuario.Equals("Gerente"))
              {
                  btnProduto.Visibility = Visibility.Visible;
                  btnUsuario.Visibility = Visibility.Visible;
@@ -40,7 +67,7 @@ namespace mercearia_seu_joao.View
 
         private void FuncionarioCaixa()
         {
-            /*if (Usuarios == UsuarioCaixa)
+            /*if (tipoUsuario.Equals("Caixa"))
             {
                 btnProduto.Visibility = Visibility.Hidden;
                 btnUsuario.Visibility = Visibility.Hidden;
