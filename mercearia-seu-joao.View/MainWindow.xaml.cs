@@ -1,4 +1,5 @@
 ﻿using System;
+using MySqlConnector;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -127,9 +128,6 @@ namespace mercearia_seu_joao.View
                MessageBoxImage.Warning
                );
             }
-
-
-
         }
     }
 }
