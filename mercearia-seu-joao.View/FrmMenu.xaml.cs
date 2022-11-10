@@ -24,7 +24,7 @@ namespace mercearia_seu_joao.View
         public FrmMenu()
         {
             InitializeComponent();
-            //txtUsuarioData.Text = $"Olá {Usuario}, hoje é dia {DateTime.Now.ToShortDateString()}";
+            //txtUsuarioData.Text = $"Olá {nome}, hoje é dia {DateTime.Now.ToShortDateString()}";
         }
 
         public void ValidarLogin()
@@ -35,10 +35,10 @@ namespace mercearia_seu_joao.View
                 conexao.Open();
                 var comando = conexao.CreateCommand();
                 comando.CommandText = @"
-            select * from Usuario where tipoUsuario = @tipoUsuario";
-            var leitura = comando.ExecuteReader();
+            select from Usuario where tipoUsuario = @tipoUsuario and nome = @nome";
+              
+                var leitura = comando.ExecuteReader();
             }
-
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
@@ -56,18 +56,19 @@ namespace mercearia_seu_joao.View
 
         private void FuncionarioGerente()
         {
-          /*if (tipoUsuario.Equals("Gerente"))
+          /* if (DiferencaUsuario() =! true)
              {
                  btnProduto.Visibility = Visibility.Visible;
                  btnUsuario.Visibility = Visibility.Visible;
                  btnVender.Visibility = Visibility.Visible;
              }
           */
+         
         }
 
         private void FuncionarioCaixa()
         {
-            /*if (tipoUsuario.Equals("Caixa"))
+            /*if (DiferencaUsuario() = true)
             {
                 btnProduto.Visibility = Visibility.Hidden;
                 btnUsuario.Visibility = Visibility.Hidden;
