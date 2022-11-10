@@ -22,49 +22,57 @@ namespace mercearia_seu_joao.View
         public FrmMenu()
         {
             InitializeComponent();
-            txtUsuarioData.Text = "";
+            //txtUsuarioData.Text = $"Olá {Usuario}, hoje é dia {DateTime.Now.ToShortDateString()}";
         }
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
 
         private void FuncionarioGerente()
         {
-            if (TipoUsuario == UsuarioGerente)
-            {
-                btnProduto.Visibility = Visibility.Visible;
-                btnUsuario.Visibility = Visibility.Visible;
-                btnVender.Visibility = Visibility.Visible;
-            }
+            /* if (Usuarios == UsuarioGerente)
+             {
+                 btnProduto.Visibility = Visibility.Visible;
+                 btnUsuario.Visibility = Visibility.Visible;
+                 btnVender.Visibility = Visibility.Visible;
+             }
+            */
         }
 
         private void FuncionarioCaixa()
         {
-            if (TipoUsuario == UsuarioCaixa)
+            /*if (Usuarios == UsuarioCaixa)
             {
                 btnProduto.Visibility = Visibility.Hidden;
                 btnUsuario.Visibility = Visibility.Hidden;
                 btnVender.Visibility = Visibility.Visible;
             }
+             */
         }
 
-        private void Vender(object sender, RoutedEventArgs e)
+        private void TelaProdutos(object sender, RoutedEventArgs e)
         {
-            FrmVenderProduto frmVenderProduto = new FrmVenderProduto();
-            frmVenderProduto.Show();
-
-        }
-
-        private void Sair(object sender, RoutedEventArgs e)
-        {           
-            Close();
-            //MainWindow frmLogin = new MainWindow();
-            // Abre a janela do jogo da velha.
-            //frmLogin.Show();
-
+            //FrmGerenciarProduto frmGerenciarProduto = new FrmGerenciarProduto();
+            //frmGerenciarProduto.Show();
         }
 
         private void UsuarioEntrar(object sender, RoutedEventArgs e)
         {
             //FrmGerenciarUsuario frmGerenciarUsuario = new FrmGerenciarUsuario();
-            //frmGerenciarUsuario.Show();
+           // frmGerenciarUsuario.Show();
         }
+
+        private void EfetuarVenda(object sender, RoutedEventArgs e)
+        {
+            FrmVenderProduto frmVenderProduto = new FrmVenderProduto();
+            frmVenderProduto.Show();
+        }
+
+        private void Sair(object sender, RoutedEventArgs e)
+        {
+            Close();
+            MainWindow MainWindow = new MainWindow();
+            MainWindow.Show();
+
+        }       
     }
 }
