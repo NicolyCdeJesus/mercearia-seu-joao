@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mercearia_seu_joao.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="800"
+        ResizeMode="NoResize">
 
-    </Grid>
+	<Grid>
+		<TextBox x:Name="txtEmail" HorizontalAlignment="Center" Height="36" Margin="0,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186" BorderBrush="#FFACACAC" Background="#FFEBF6F7" FontFamily="Corbel" TextAlignment="Left"/>
+		<TextBlock HorizontalAlignment="Left" Height="18" Margin="307,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" FontFamily="Corbel" FontSize="18">
+			<Run Language="pt-br" Text="Senha"/>
+		</TextBlock>
+		<TextBlock HorizontalAlignment="Left" Height="21" Margin="307,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="82" Text="Email" FontSize="18" FontFamily="Corbel"/>
+		<TextBlock x:Name="txtEsqueceuSenha" HorizontalAlignment="Center" Height="15" Margin="0,326,0,0" TextWrapping="Wrap" Text="Esqueceu a senha?" VerticalAlignment="Top" Width="186" FontFamily="Corbel" PreviewMouseLeftButtonDown="EsqueceuSenha"/>
+		<PasswordBox x:Name="txtSenha" HorizontalAlignment="Center" Height="36" Margin="0,285,0,0" VerticalAlignment="Top" Width="186" Background="#FFEBF6F7" BorderBrush="#FFACACAC" FontFamily="Corbel"/>
+		<Button x:Name="btnEntrar" Content="Entrar" HorizontalAlignment="Center" Height="41" Margin="0,367,0,0" VerticalAlignment="Top" Width="112" Background="#FF93D3E4" BorderBrush="#FFACACAC" FontFamily="Corbel" FontSize="18" FontWeight="Normal" Click="FazerLogin"/>
+		<Image HorizontalAlignment="Center" Height="163" Margin="0,19,0,0" VerticalAlignment="Top" Width="184" Source="/usuario.jpg">
+			<Image.OpacityMask>
+				<ImageBrush ImageSource="/usuario.jpg"/>
+			</Image.OpacityMask>
+		</Image>
+
+	</Grid>
 </Window>
+
