@@ -39,8 +39,8 @@ namespace mercearia_seu_joao.View
 
         private void UsuarioEntrar(object sender, RoutedEventArgs e)
         {
-            //FrmGerenciarUsuario frmGerenciarUsuario = new FrmGerenciarUsuario();
-            //frmGerenciarUsuario.Show();
+            FrmGerenciarUsuario frmGerenciarUsuario = new FrmGerenciarUsuario();
+            frmGerenciarUsuario.Show();
         }
 
         private void Sair(object sender, RoutedEventArgs e)
