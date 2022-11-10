@@ -9,14 +9,14 @@
       Title="FrmItemDaLista">
 
     <Grid Background="White">
-        <TextBlock HorizontalAlignment="Left" Margin="15,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="77" FontFamily="Corbel" FontSize="18"><Run Language="pt-br" Text="ID Produto"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Margin="15,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77" Height="30" BorderBrush="#FFACACAC" Background="#FFEBF6F7"/>
-        <Button Content="Alterar" HorizontalAlignment="Left" Margin="15,247,0,0" VerticalAlignment="Top" Height="30" Width="77" Background="#FF93D3E4" BorderBrush="#FF93D3E4" Foreground="White" FontSize="18" FontFamily="Corbel"/>
-        <TextBlock HorizontalAlignment="Left" Margin="15,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="110" FontSize="18" FontFamily="Corbel"><Run Language="pt-br" Text="Nome"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Margin="15,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Height="37" TextChanged="TextBox_TextChanged" BorderBrush="#FFACACAC" Background="#FFEBF6F7"/>
-        <TextBlock HorizontalAlignment="Left" Margin="15,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="89" FontSize="18" FontFamily="Corbel"><Run Language="pt-br" Text="Quantidade"/></TextBlock>
-        <TextBox HorizontalAlignment="Left" Margin="15,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77" Height="30" BorderBrush="#FFACACAC" Background="#FFEBF6F7" TextChanged="TextBox_TextChanged_1"/>
-        <Button Content="Excluir" HorizontalAlignment="Left" Margin="116,247,0,0" VerticalAlignment="Top" Height="30" Width="77" Foreground="White" BorderBrush="#FFFF1212" Background="#FFFF1212" FontFamily="Corbel" FontSize="18"/>
+        <TextBlock x:Name="txtIdLista" HorizontalAlignment="Left" Margin="15,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="89" FontFamily="Corbel" FontSize="18" FontWeight="Normal" Text="ID Produto"/>
+        <TextBox x:Name="txtCampoIdLista" HorizontalAlignment="Left" Margin="15,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77" Height="30" BorderBrush="#FFACACAC" Background="#FFEBF6F7" IsReadOnly="True"/>
+        <Button x:Name="btnAlterar" Content="Alterar" HorizontalAlignment="Left" Margin="15,241,0,0" VerticalAlignment="Top" Height="30" Width="77" Background="#FF93D3E4" BorderBrush="#FF93D3E4" Foreground="White" FontSize="18" FontFamily="Corbel" Click="alterar"/>
+        <TextBlock x:Name="txtNomeLista" HorizontalAlignment="Left" Margin="15,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="110" FontSize="18" FontFamily="Corbel"><Run Language="pt-br" Text="Nome"/></TextBlock>
+        <TextBox x:Name="txtCampoNomeLista" HorizontalAlignment="Left" Margin="15,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Height="37" BorderBrush="#FFACACAC" Background="#FFEBF6F7" IsReadOnly="True"/>
+        <TextBlock x:Name="txtQtdLista" HorizontalAlignment="Left" Margin="15,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="23" Width="89" FontSize="18" FontFamily="Corbel"><Run Language="pt-br" Text="Quantidade"/></TextBlock>
+        <TextBox x:Name="txtCampoQtdLista" HorizontalAlignment="Left" Margin="15,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77" Height="30" BorderBrush="#FFACACAC" Background="#FFEBF6F7"/>
+        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="116,241,0,0" VerticalAlignment="Top" Height="30" Width="77" Foreground="White" BorderBrush="#FFFF1212" Background="#FFFF1212" FontFamily="Corbel" FontSize="18" Click="excluir"/>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="  Item da Lista" VerticalAlignment="Top" Height="29" Width="250" Background="#FFEBF6F7"/>
 
     </Grid>
