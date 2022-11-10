@@ -7,32 +7,36 @@
         mc:Ignorable="d"
         Title="FrmMenu" Height="480" Width="700">
     <Grid>
-        <Button x:Name="btnSair" Content="" HorizontalAlignment="Center" Margin="638,366,0,0" VerticalAlignment="Top" Height="41" Width="44" Foreground="White" BorderBrush="White" Click="Sair">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="157*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnSair" Content="" HorizontalAlignment="Left" Margin="575,366,0,0" VerticalAlignment="Top" Height="41" Width="44" Foreground="White" BorderBrush="White" Click="Sair" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="/sair.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btnProduto" Content="" HorizontalAlignment="Center" Margin="-419,239,0,0" VerticalAlignment="Top" Height="83" Width="96" Click="ProdutosEntrar" Foreground="White" BorderBrush="White">
+        <Button x:Name="btnProduto" Content="" HorizontalAlignment="Left" Margin="20,239,0,0" VerticalAlignment="Top" Height="83" Width="96" Click="TelaProdutos" Foreground="White" BorderBrush="White" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="/produto.png"/>
             </Button.Background>
         </Button>
-        <Rectangle x:Name="AtualizaData" HorizontalAlignment="Center" Height="106" Margin="0,419,0,0" Stroke="#FF99C8E6" VerticalAlignment="Top" Width="700" OpacityMask="#FF99C8E6" Fill="#FF99C8E6"/>
-        <TextBlock x:Name="txtUsuarioData" HorizontalAlignment="Left" Margin="10,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontFamily="Corbel"><Run Language="pt-br" Text="Olá"/></TextBlock>
-        <Button x:Name="btnVender" Content="" HorizontalAlignment="Center" Margin="419,237,0,0" VerticalAlignment="Top" Height="88" Width="110" Foreground="White" BorderBrush="Black" Background="Black" Click="Vender">
+        <Rectangle x:Name="AtualizaData" HorizontalAlignment="Left" Height="106" Margin="0,419,0,0" Stroke="#FF99C8E6" VerticalAlignment="Top" Width="700" OpacityMask="#FF99C8E6" Fill="#FF99C8E6" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="txtUsuarioData" HorizontalAlignment="Left" Margin="10,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontFamily="Corbel"/>
+        <Button x:Name="btnVender" Content="" HorizontalAlignment="Center" Margin="364,237,0,0" VerticalAlignment="Top" Height="88" Width="110" Foreground="White" BorderBrush="Black" Background="Black" Click="EfetuarVenda" Grid.Column="1">
             <Button.OpacityMask>
                 <ImageBrush ImageSource="/venda.png"/>
             </Button.OpacityMask>
         </Button>
-        <Button x:Name="btnUsuario" Content="" HorizontalAlignment="Center" Margin="0,232,0,0" VerticalAlignment="Top" Height="97" Width="96" Click="UsuarioEntrar" BorderBrush="White">
+        <Button x:Name="btnUsuario" Content="" HorizontalAlignment="Left" Margin="230,232,0,0" VerticalAlignment="Top" Height="97" Width="96" Click="UsuarioEntrar" BorderBrush="White" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="/usuario.jpg"/>
             </Button.Background>
         </Button>
-        <Image x:Name="imgLogo" HorizontalAlignment="Center" Margin="0,0,0,227" Width="316" Source="/Prova 60 (1).png" OpacityMask="Black" RenderTransformOrigin="1,1" Height="290" VerticalAlignment="Bottom"/>
-        <TextBlock x:Name="txtProdutos" HorizontalAlignment="Center" Margin="-424,335,0,0" TextWrapping="Wrap" Text="Produtos" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel"/>
-        <TextBlock x:Name="txtUusario" HorizontalAlignment="Center" Margin="0,335,0,0" TextWrapping="Wrap" Text="Usuário" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel"/>
-        <TextBlock x:Name="txtEfetuarVenda" HorizontalAlignment="Center" Margin="440,339,0,0" TextWrapping="Wrap" Text="Efetuar Venda" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel"/>
+        <Image x:Name="imgLogo" HorizontalAlignment="Center" Margin="-70,0,0,227" Width="316" Source="/Prova 60 (1).png" OpacityMask="Black" RenderTransformOrigin="1,1" Height="290" VerticalAlignment="Bottom" Grid.Column="1"/>
+        <TextBlock x:Name="txtProdutos" HorizontalAlignment="Left" Margin="38,335,0,0" TextWrapping="Wrap" Text="Produtos" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel" Grid.Column="1"/>
+        <TextBlock x:Name="txtUusario" HorizontalAlignment="Left" Margin="254,335,0,0" TextWrapping="Wrap" Text="Usuário" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel" Grid.Column="1"/>
+        <TextBlock x:Name="txtEfetuarVenda" HorizontalAlignment="Center" Margin="367,339,0,0" TextWrapping="Wrap" Text="Efetuar Venda" VerticalAlignment="Top" FontSize="15" FontFamily="Corbel" Grid.Column="1"/>
 
     </Grid>
 </Window>
