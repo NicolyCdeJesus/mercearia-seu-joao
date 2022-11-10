@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace mercearia_seu_joao.View
 {
     /// <summary>
@@ -56,13 +57,13 @@ namespace mercearia_seu_joao.View
 
         private void FuncionarioGerente()
         {
-          /* if (DiferencaUsuario() =! true)
+          /*if (DiferencaUsuario() =! true)
              {
                  btnProduto.Visibility = Visibility.Visible;
                  btnUsuario.Visibility = Visibility.Visible;
                  btnVender.Visibility = Visibility.Visible;
              }
-          */
+         */
          
         }
 
@@ -85,8 +86,8 @@ namespace mercearia_seu_joao.View
 
         private void UsuarioEntrar(object sender, RoutedEventArgs e)
         {
-            //FrmGerenciarUsuario frmGerenciarUsuario = new FrmGerenciarUsuario();
-           // frmGerenciarUsuario.Show();
+            FrmGerenciarUsuario frmGerenciarUsuario = new FrmGerenciarUsuario();
+            frmGerenciarUsuario.Show();
         }
 
         private void EfetuarVenda(object sender, RoutedEventArgs e)
