@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using mercearia_seu_joao.Model;
 
 namespace mercearia_seu_joao.View
 {
@@ -21,7 +22,6 @@ namespace mercearia_seu_joao.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        string connetionString;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,11 +44,12 @@ namespace mercearia_seu_joao.View
 
         public void FazerLogin(object sender, RoutedEventArgs e)
         {
-            if (CampoCompleto() == true && UsuarioExiste() == true)
+            if (CampoPreenchido() == true && UsuarioExiste() == true)
             {
-                FrmMenu frmmenu = new FrmMenu();
+                FrmMenu frmmenu = new FrmMenu("Nome Usuario");
                 frmmenu.Show();
                 Close();
+           
             }
 
             else
@@ -62,34 +63,34 @@ namespace mercearia_seu_joao.View
 );
             }
         }
-       
-                public bool UsuarioExiste()
-                {
-                    Usuario usuario = new Usuario();
-                    string txtEmail = "";
-                    string txtSenha = "";
-
-                    if (txtEmail == usuario.email && txtSenha == usuario.senha)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        MessageBoxResult result = MessageBox.Show(
-                         "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
-                         "Atenção",
-
-                       MessageBoxButton.OK,
-                       MessageBoxImage.Warning
-                       );
-                        return false;
-                    }
-                }
-       
-
-        public bool CampoCompleto()
+        public bool UsuarioExiste()
         {
-            if (txtEmail.Text == "" && txtSenha.Password == "")
+            Usuario listaDeUsuarios = new Usuario();
+            Usuario usuario = new Usuario();
+            string txtEmail = "";
+            string txtSenha = "";
+
+            if (txtEmail == usuario.email && txtSenha == usuario.senha && usuario == listaDeUsuarios)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show(
+                 "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
+                 "Atenção",
+
+               MessageBoxButton.OK,
+               MessageBoxImage.Warning
+               );
+                return false;
+            }
+        }
+       
+
+        public bool CampoPreenchido()
+        {
+            if (txtEmail.Text != "" && txtSenha.Password != "")
             {
                 return true;
             }
@@ -106,5 +107,7 @@ namespace mercearia_seu_joao.View
                 return false;
             }
         }
+
+
     }
 }

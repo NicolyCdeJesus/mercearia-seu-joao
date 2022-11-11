@@ -22,10 +22,11 @@ namespace mercearia_seu_joao.View
     /// </summary>
     public partial class FrmMenu : Window
     {
-        public FrmMenu()
+        public FrmMenu(string nome)
         {
             InitializeComponent();
-            //txtUsuarioData.Text = $"Olá {nome}, hoje é dia {DateTime.Now.ToShortDateString()}";
+            txtUsuarioData.Text = $"Olá {nome}, hoje é dia {DateTime.Now.ToShortDateString()}";
+            ValidarLogin();
         }
 
         public void ValidarLogin()
@@ -33,12 +34,30 @@ namespace mercearia_seu_joao.View
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
             try
             {
+                //abrindo comando para conectar
                 conexao.Open();
                 var comando = conexao.CreateCommand();
                 comando.CommandText = @"
-            select from Usuario where tipoUsuario = @tipoUsuario and nome = @nome";
+            select from Usuario where tipoUsuario = @tipoUsuario and id = @id";
               
                 var leitura = comando.ExecuteReader();
+                if (leitura.Read())
+                {
+                    //Verifica o tipo de usuário
+                    string tipoUsuario = leitura.GetString("tipoUsuario");
+                    if(tipoUsuario.Equals("Gerente")) 
+                    {
+                        btnProduto.Visibility = Visibility.Visible;
+                        btnUsuario.Visibility = Visibility.Visible;
+                        btnVender.Visibility = Visibility.Visible;
+                    }
+                    else if (tipoUsuario.Equals("Vendedor"))
+                    {
+                        btnProduto.Visibility = Visibility.Hidden;
+                        btnUsuario.Visibility = Visibility.Hidden;
+                        btnVender.Visibility = Visibility.Visible;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -52,36 +71,38 @@ namespace mercearia_seu_joao.View
                     conexao.Close();
                 }
             }
-                     
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+            
+        }
 
-        private void FuncionarioGerente()
+
+        /*private void FuncionarioGerente()
         {
-          /*if (DiferencaUsuario() =! true)
+          if (DiferencaUsuario() =! true)
              {
                  btnProduto.Visibility = Visibility.Visible;
                  btnUsuario.Visibility = Visibility.Visible;
                  btnVender.Visibility = Visibility.Visible;
              }
-         */
+         
          
         }
+        */
 
-        private void FuncionarioCaixa()
-        {
-            /*if (DiferencaUsuario() = true)
-            {
-                btnProduto.Visibility = Visibility.Hidden;
-                btnUsuario.Visibility = Visibility.Hidden;
-                btnVender.Visibility = Visibility.Visible;
-            }
-             */
-        }
-
+        /*private void FuncionarioCaixa()
+       {
+          if (DiferencaUsuario() = true)
+           {
+               btnProduto.Visibility = Visibility.Hidden;
+               btnUsuario.Visibility = Visibility.Hidden;
+               btnVender.Visibility = Visibility.Visible;
+           }
+            
+    }
+*/
         private void TelaProdutos(object sender, RoutedEventArgs e)
         {
-            //FrmGerenciarProduto frmGerenciarProduto = new FrmGerenciarProduto();
-            //frmGerenciarProduto.Show();
+            FrmGerenciarProduto frmGerenciarProduto = new FrmGerenciarProduto();
+            frmGerenciarProduto.Show();
         }
 
         private void UsuarioEntrar(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mercearia_seu_joao.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -134,7 +135,7 @@ namespace mercearia_seu_joao.View
         }
         private void AdicionaProduto()
         {
-            bool foiInserido = ConsultasProduto.InserirProduto(
+            bool foiInserido = ConsultasProduto.NovoProduto(
             txtNomeProduto.Text,
             txtFornecedor.Text,
             int.Parse(txtQuantidade.Text),
@@ -165,7 +166,7 @@ namespace mercearia_seu_joao.View
             txtNomeProduto.Text = produto.nome;
             txtFornecedor.Text = produto.fornecedor;
             txtQuantidade.Text = produto.qtd.ToString();
-            txtPrecoUnitario.Text = produto.qtd.ToString();
+            txtPrecoUnitario.Text = produto.precoUnitario.ToString();
         }
     }
 }

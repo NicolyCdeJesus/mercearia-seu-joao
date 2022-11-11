@@ -11,13 +11,11 @@
             <ColumnDefinition Width="14*"/>
             <ColumnDefinition Width="65*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="15,358,0,0" VerticalAlignment="Top" Background="#FFFF1212" Foreground="Black" BorderBrush="White" FontFamily="Corbel" Width="191" Height="36" Grid.ColumnSpan="2" Click="ExcluirUsuario"/>
+        <Button x:Name="btnExcluir" Content="Excluir" HorizontalAlignment="Left" Margin="15,358,0,0" VerticalAlignment="Top" Background="#FFFF1212" Foreground="White" BorderBrush="White" FontFamily="Corbel" Width="191" Height="36" Grid.ColumnSpan="2" Click="ExcluirUsuario"/>
         <Button x:Name="btnAlterar" Content="Alterar" HorizontalAlignment="Left" Margin="114,278,0,0" VerticalAlignment="Top" FontFamily="Corbel" Background="#FF93D3E4" BorderBrush="White" Width="92" Height="34" Grid.ColumnSpan="2" Click="AtualizarDataGridUsuario"/>
         <Button x:Name="btnLimpar" Content="Limpar" HorizontalAlignment="Left" Margin="15,317,0,0" VerticalAlignment="Top" Width="191" BorderBrush="White" Height="36" FontFamily="Corbel" Background="#FF93D3E4" Grid.ColumnSpan="2" Click="LimparCamposDoUsuario"/>
         <Button x:Name="btnNovoUsuario" Content="Novo" HorizontalAlignment="Left" Margin="15,278,0,0" VerticalAlignment="Top" Background="#FF93D3E4" BorderBrush="White" Width="94" FontFamily="Corbel" Height="34" Click="AdicionarNovoUsuario"/>
-        <TextBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="15,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Background="#FFF9FDFD" BorderBrush="#FFACACAC" FontFamily="Corbel" Height="20" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="cbTipoUsuario" HorizontalAlignment="Left" Margin="82,54,0,0" VerticalAlignment="Top" Width="106" Height="22" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtConfirmarSenha" HorizontalAlignment="Left" Margin="15,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Background="#FFF9FDFD" BorderBrush="#FFACACAC" FontFamily="Corbel" Height="20" Grid.ColumnSpan="2"/>
         <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="15,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Background="#FFF9FDFD" BorderBrush="#FFACACAC" FontFamily="Corbel" Height="20" Grid.ColumnSpan="2"/>
         <TextBox x:Name="txtNome" HorizontalAlignment="Left" Margin="15,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Background="#FFF9FDFD" BorderBrush="#FFACACAC" FontFamily="Corbel" Height="20" Grid.ColumnSpan="2"/>
         <TextBox x:Name="txtId" HorizontalAlignment="Left" Margin="15,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" Background="#FFF9FDFD" BorderBrush="#FFACACAC" FontFamily="Corbel" Height="22"/>
@@ -27,7 +25,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="15,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Corbel"><Run Language="pt-br" Text="E-mail"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="15,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Corbel"><Run Language="pt-br" Text="Confirmar Senha"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="15,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Corbel"><Run Language="pt-br" Text="Senha"/></TextBlock>
-        <DataGrid x:Name="dgvUsuario" HorizontalAlignment="Left" Width="530" Margin="130,38,0,40" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="1">
+        <DataGrid x:Name="dgvUsuario" HorizontalAlignment="Left" Width="543" Margin="117,38,0,40" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" FontFamily="Corbel"/>
                 <DataGridTextColumn Header="Nome" FontFamily="Corbel"/>
@@ -37,6 +35,8 @@
                 <DataGridTextColumn FontFamily="Corbel" Header="Confirmar Senha"/>
             </DataGrid.Columns>
         </DataGrid>
+        <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="15,188,0,0" VerticalAlignment="Top" Width="173" Grid.ColumnSpan="2" Background="#FFF9FDFD" Height="20"/>
+        <PasswordBox x:Name="txtConfirmarSenha" HorizontalAlignment="Left" Margin="15,233,0,0" VerticalAlignment="Top" Width="173" Grid.ColumnSpan="2" Background="#FFF9FDFD" Height="20"/>
 
     </Grid>
 </Window>
