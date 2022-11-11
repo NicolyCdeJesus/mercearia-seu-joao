@@ -21,7 +21,7 @@ namespace mercearia_seu_joao.View
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        string connetionString;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace mercearia_seu_joao.View
 
         //Metodos, if's, etc nas classes, feito tudo dia 08/11
 
-        private void EsqueceuSenha(object sender, MouseButtonEventArgs e)
+        public void EsqueceuSenha(object sender, MouseButtonEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show(
                "Contate seu gerente!",
@@ -42,9 +42,9 @@ namespace mercearia_seu_joao.View
     );
         }
 
-        private void FazerLogin(object sender, RoutedEventArgs e)
+        public void FazerLogin(object sender, RoutedEventArgs e)
         {
-            if (CampoCompleto() == true)
+            if (CampoCompleto() == true && UsuarioExiste() == true)
             {
                 FrmMenu frmmenu = new FrmMenu();
                 frmmenu.Show();
@@ -62,28 +62,32 @@ namespace mercearia_seu_joao.View
 );
             }
         }
-
-        private bool UsuarioExiste()
-        {
-            Usuario email, senha = new Usuario();
-
-            if (txtEmail = email)
-            {
-                if (txtSenha.Password = senha)
+       
+                public bool UsuarioExiste()
                 {
-                    return true;
+                    Usuario usuario = new Usuario();
+                    string txtEmail = "";
+                    string txtSenha = "";
+
+                    if (txtEmail == usuario.email && txtSenha == usuario.senha)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBoxResult result = MessageBox.Show(
+                         "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
+                         "Atenção",
+
+                       MessageBoxButton.OK,
+                       MessageBoxImage.Warning
+                       );
+                        return false;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-        private bool CampoCompleto()
+       
+
+        public bool CampoCompleto()
         {
             if (txtEmail.Text == "" && txtSenha.Password == "")
             {
@@ -100,33 +104,6 @@ namespace mercearia_seu_joao.View
                 MessageBoxImage.Warning);
 
                 return false;
-            }
-            //Coisas relacionadas a isso foram feitas dia 10/11 (aguardando a Juliana com a parte dela)
-        }
-
-        private bool DiferencaUsuario()
-        {
-            UsuarioGerente emailGerente = new UsuarioGerente();
-            UsuarioCaixa emailCaixa = new UsuarioCaixa();
-            Usuario email = new Usuario();
-
-            if (email = emailCaixa)
-            {
-                return true;
-            }
-            if (email = emailGerente)
-            {
-                return false;
-            }
-            else
-            {
-                MessageBoxResult result = MessageBox.Show(
-                 "O Email inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
-                 "Atenção",
-
-               MessageBoxButton.OK,
-               MessageBoxImage.Warning
-               );
             }
         }
     }

@@ -22,5 +22,5 @@ public class UsuarioCaixa
 public class UsuarioGerente
 {
     public int id { get; set; }
-    public string emailCaixa { get; set; }
+    public string emailGerente { get; set; }
 }
