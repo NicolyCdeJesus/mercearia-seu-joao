@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 // Feito em 08/11/2022
-public class Produto
+public class produto_Vendedor
 {
     public int id { get; set; }
     public string nome { get; set; }
