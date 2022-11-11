@@ -49,6 +49,7 @@ namespace mercearia_seu_joao.View
                 FrmMenu frmmenu = new FrmMenu();
                 frmmenu.Show();
                 Close();
+           
             }
 
             else

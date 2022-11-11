@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using mercearia_seu_joao.Model;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -123,9 +124,10 @@ public class ConsultasProduto
                 Produto produto = new Produto();
                 produto.id = leitura.GetInt32("id");
                 produto.nome = leitura.GetString("nome");
-                produto.fornecedor = leitura.GetString("fornecedor");
-                produto.qtd = leitura.GetInt32("qtd");
+                produto.qtd = leitura.GetInt32("qtd");               
                 produto.precoUnitario = leitura.GetFloat("@precoUnitario");
+                produto.fornecedor = leitura.GetString("fornecedor");
+
                 listaDeProdutos.Add(produto);
             }
         }

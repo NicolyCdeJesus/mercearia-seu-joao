@@ -72,5 +72,10 @@ namespace mercearia_seu_joao.View
             FrmItemDaLista FrmItemDaLista = new FrmItemDaLista();
             //rmItemDaLista.Show();
         }
+
+        internal void Show()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
