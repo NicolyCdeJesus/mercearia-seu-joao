@@ -21,7 +21,6 @@ namespace mercearia_seu_joao.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        string connetionString;
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +43,7 @@ namespace mercearia_seu_joao.View
 
         public void FazerLogin(object sender, RoutedEventArgs e)
         {
-            if (CampoCompleto() == true && UsuarioExiste() == true)
+            if (CampoPreenchido() == true && UsuarioExiste() == true)
             {
                 FrmMenu frmmenu = new FrmMenu();
                 frmmenu.Show();
@@ -63,7 +62,6 @@ namespace mercearia_seu_joao.View
 );
             }
         }
-       
                 public bool UsuarioExiste()
                 {
                     Usuario usuario = new Usuario();
@@ -88,7 +86,7 @@ namespace mercearia_seu_joao.View
                 }
        
 
-        public bool CampoCompleto()
+        public bool CampoPreenchido()
         {
             if (txtEmail.Text == "" && txtSenha.Password == "")
             {
