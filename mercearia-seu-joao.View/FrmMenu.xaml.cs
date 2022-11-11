@@ -26,52 +26,35 @@ namespace mercearia_seu_joao.View
         {
             InitializeComponent();
             txtUsuarioData.Text = $"Olá {nome}, hoje é dia {DateTime.Now.ToShortDateString()}";
-            ValidarLogin();
         }
 
-        public void ValidarLogin()
+        public void VerificarUsuario()
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
-            try
-            {
-                //abrindo comando para conectar
-                conexao.Open();
-                var comando = conexao.CreateCommand();
-                comando.CommandText = @"
+            conexao.Open();
+            var comando = conexao.CreateCommand();
+            comando.CommandText = @"
             select from Usuario where tipoUsuario = @tipoUsuario and id = @id";
-              
-                var leitura = comando.ExecuteReader();
-                if (leitura.Read())
-                {
-                    //Verifica o tipo de usuário
-                    string tipoUsuario = leitura.GetString("tipoUsuario");
-                    if(tipoUsuario.Equals("Gerente")) 
-                    {
-                        btnProduto.Visibility = Visibility.Visible;
-                        btnUsuario.Visibility = Visibility.Visible;
-                        btnVender.Visibility = Visibility.Visible;
-                    }
-                    else if (tipoUsuario.Equals("Vendedor"))
-                    {
-                        btnProduto.Visibility = Visibility.Hidden;
-                        btnUsuario.Visibility = Visibility.Hidden;
-                        btnVender.Visibility = Visibility.Visible;
-                    }
-                }
-            }
-            catch (Exception ex)
+
+            var leitura = comando.ExecuteReader();
+            if (leitura.Read())
             {
-                Console.WriteLine(ex.Message);
+                //Verifica o tipo de usuário
+                string tipoUsuario = leitura.GetString("tipoUsuario");
+                if (tipoUsuario.Equals("Gerente"))
+                {
+                    btnProduto.Visibility = Visibility.Visible;
+                    btnUsuario.Visibility = Visibility.Visible;
+                    btnVender.Visibility = Visibility.Visible;
+                }
+                else if (tipoUsuario.Equals("Vendedor"))
+                {
+                    btnProduto.Visibility = Visibility.Hidden;
+                    btnUsuario.Visibility = Visibility.Hidden;
+                    btnVender.Visibility = Visibility.Visible;
+                }
             }
 
-            finally
-            {
-                if (conexao.State == System.Data.ConnectionState.Open)
-                {
-                    conexao.Close();
-                }
-            }
-            
         }
 
 
