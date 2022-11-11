@@ -134,7 +134,7 @@ namespace mercearia_seu_joao.View
         }
         private void AdicionaProduto()
         {
-            bool foiInserido = ConsultasProduto.InserirProduto(
+            bool foiInserido = ConsultasProduto.NovoProduto(
             txtNomeProduto.Text,
             txtFornecedor.Text,
             int.Parse(txtQuantidade.Text),

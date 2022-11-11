@@ -25,10 +25,10 @@ namespace mercearia_seu_joao.View
         public FrmMenu()
         {
             InitializeComponent();
-            //txtUsuarioData.Text = $"Olá {nome}, hoje é dia {DateTime.Now.ToShortDateString()}";
+            //ValidarLogin();
         }
 
-        public void ValidarLogin()
+        public void ValidarLogin(string nome)
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
             try
@@ -52,8 +52,9 @@ namespace mercearia_seu_joao.View
                     conexao.Close();
                 }
             }
-                     
-        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+            txtUsuarioData.Text = $"Olá {nome}, hoje é dia {DateTime.Now.ToShortDateString()}";
+        }
+
 
         private void FuncionarioGerente()
         {
@@ -80,8 +81,8 @@ namespace mercearia_seu_joao.View
 
         private void TelaProdutos(object sender, RoutedEventArgs e)
         {
-            //FrmGerenciarProduto frmGerenciarProduto = new FrmGerenciarProduto();
-            //frmGerenciarProduto.Show();
+            FrmGerenciarProduto frmGerenciarProduto = new FrmGerenciarProduto();
+            frmGerenciarProduto.Show();
         }
 
         private void UsuarioEntrar(object sender, RoutedEventArgs e)

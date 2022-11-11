@@ -142,4 +142,9 @@ public class ConsultasProduto
         }
         return listaDeProdutos;
     }
+
+    internal static bool NovoProduto(string text1, string text2, int v1, float v2)
+    {
+        throw new NotImplementedException();
+    }
 }
