@@ -9,7 +9,7 @@ namespace mercearia_seu_joao.Model
 {
     public class ConsultasUsuario
     {
-        public static bool InserirUsuario(string nome, string tipoUsuario, string email, string senha, string confirmarSenha)
+        public static bool InserirUsuario(string nome, string tipoUsuario, string email, string senha)
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
             bool foiInserido = false;
@@ -20,13 +20,12 @@ namespace mercearia_seu_joao.Model
 
 
                 comando.CommandText = @"
-                INSERT INTO Usuario (nome, tipoUsuario, email, senha, confirmarSenha) 
-                VALUES(@nome,@tipoUsuario,@email,@senha,@confirmaSenha)";
+                INSERT INTO Usuario (nome, tipoUsuario, email, senha) 
+                VALUES(@nome,@tipoUsuario,@email,@senha)";
                 comando.Parameters.AddWithValue("@nome", nome);
                 comando.Parameters.AddWithValue("@tipoUsuario", tipoUsuario);
                 comando.Parameters.AddWithValue("@email", email);
                 comando.Parameters.AddWithValue("@senha", senhaCriptografada);
-                comando.Parameters.AddWithValue("@confirmaSenha", senhaCriptografada);
                 var leitura = comando.ExecuteReader();
                     
                 foiInserido = true;
@@ -77,7 +76,7 @@ namespace mercearia_seu_joao.Model
         }
 
         //Altera um produto no banco de dados - UPDATE
-        public static bool AtualizarUsuario(int id, string nome, string tipoUsuario, string email, string senha, string confirmarSenha)
+        public static bool AtualizarUsuario(int id, string nome, string tipoUsuario, string email, string senha)
         {
             // REFAZER COM OS NOMES CERTOS
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
@@ -90,13 +89,12 @@ namespace mercearia_seu_joao.Model
                     comando.CommandText = @"
                     UPDATE Usuario
                     SET nome = @nome, tipoUsuario = @tipoUsuario, email = @email, senha = @senha
-                    WHERE id = @id, confirmarSenha = @confirmaSenha";
+                    WHERE id = @id";
                     comando.Parameters.AddWithValue("@id", id);
                     comando.Parameters.AddWithValue("@nome", nome);
                     comando.Parameters.AddWithValue("@tipoUsuario", tipoUsuario);
                     comando.Parameters.AddWithValue("@email", email);
                     comando.Parameters.AddWithValue("@senha", senhaCriptografada);
-                    comando.Parameters.AddWithValue("@confirmaSenha", senhaCriptografada);
                     var leitura = comando.ExecuteReader();
 
                     foiAtualizado = true;
@@ -137,7 +135,6 @@ namespace mercearia_seu_joao.Model
                     usuario.tipoUsuario = leitura.GetString("tipoUsuario");
                     usuario.email = leitura.GetString("email");
                     usuario.senha = leitura.GetString("senha");
-                    usuario.confirmaSenha = leitura.GetString("confirmarSenha");
 
                     listaDeUsuarios.Add(usuario);
                 }
@@ -175,7 +172,7 @@ namespace mercearia_seu_joao.Model
                 var leitura = comando.ExecuteReader();
                 while (leitura.Read())
                 {
-                    usuarioExiste = true;
+                    
                     break;
                 }
             }

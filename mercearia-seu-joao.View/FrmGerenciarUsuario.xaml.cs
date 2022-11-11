@@ -23,6 +23,7 @@ namespace mercearia_seu_joao.View
     {
 
         List<Usuario> listaDeUsuarios = new List<Usuario>();
+        List<int> listaDeNumeros = new List<int>();
         public FrmGerenciarUsuario()
         {
             InitializeComponent();
@@ -71,14 +72,13 @@ namespace mercearia_seu_joao.View
                     MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
-                    txtConfirmarSenha.Text = txtSenha.Text;
                     bool foiAtualizado = ConsultasUsuario.AtualizarUsuario(
                         id,
                         txtNome.Text,
                         cbTipoUsuario.Text,
                         txtEmail.Text,
-                        txtSenha.Text,
-                        txtConfirmarSenha.Text);
+                        txtSenha.Password
+                        );
 
                     if (foiAtualizado == true)
                     {
@@ -124,7 +124,7 @@ namespace mercearia_seu_joao.View
 
         private bool VerificaCampos()
         {
-            if (txtNome.Text != "" && txtEmail.Text != "" && txtSenha.Text != "" && txtConfirmarSenha.Text != "")
+            if (txtNome.Text != "" && txtEmail.Text != "" && txtSenha.Password != "" && txtConfirmarSenha.Password != "")
             {
                 return true;
 
@@ -138,8 +138,10 @@ namespace mercearia_seu_joao.View
         {
             txtId.Text = "";
             txtNome.Text = "";
+            cbTipoUsuario.Text = "";
             txtEmail.Text = "";
-            txtConfirmarSenha.Text = "";
+            txtSenha.Password = "";
+            txtConfirmarSenha.Password = "";
         }
         private void AtualizaDataGrid()
         {
@@ -154,8 +156,7 @@ namespace mercearia_seu_joao.View
                 txtNome.Text,
                 cbTipoUsuario.Text,
                 txtEmail.Text,
-                txtSenha.Text,
-                txtConfirmarSenha.Text
+                txtSenha.Password
                 );
             if (foiInserido == true)
             {
@@ -177,13 +178,13 @@ namespace mercearia_seu_joao.View
             string nome = txtNome.Text;
             string tipoUsuario = cbTipoUsuario.Text;
             string email = txtEmail.Text;
-            string senha = txtSenha.Text;
-            string confirmarSenha = txtSenha.Text;
+            string senha = txtSenha.Password;
+            string confirmarSenha = txtSenha.Password;
 
             bool usuarioExiste = ConsultasUsuario.VerificarUsuarioExistente(email);
             if (usuarioExiste == false)
             {
-                bool validarCadastro = ConsultasUsuario.InserirUsuario(nome, tipoUsuario, email, senha, confirmarSenha);
+                bool validarCadastro = ConsultasUsuario.InserirUsuario(nome, tipoUsuario, email, senha);
                 if (validarCadastro == true)
                 {
                     MessageBoxResult result = MessageBox.Show(
@@ -211,6 +212,40 @@ namespace mercearia_seu_joao.View
                     MessageBoxImage.Warning);
             }
         }
+
+
+        /*public bool VerificarParametrosDaSenha()
+        {
+            if(txtSenha.Password.Length > 8)
+            {
+                if (txtSenha.Password.Contains(listaDeNumeros.ToString()))
+                {
+                    if ()
+                    {
+                        if ()
+                        {
+
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }*/
         
     }
 }
