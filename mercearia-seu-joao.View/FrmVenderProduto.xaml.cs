@@ -64,7 +64,7 @@ namespace mercearia_seu_joao.View
 
         private void RealizarVenda(object sender, RoutedEventArgs e)
         {
-            if (RealizaVenda() == true)
+            if (RealizaVenda() == true) 
             {
                 CaixaDeMensagem_Vendedor.ExibirMensagemVendaRealizada();
             }
