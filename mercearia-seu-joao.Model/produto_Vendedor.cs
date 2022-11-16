@@ -9,8 +9,7 @@ public class produto_Vendedor
     public int id { get; set; }
     public string nome { get; set; }
     public int quantidade { get; set; }
-    public int precoTotal { get; set; }
-
-    public int precoUnitario { get; set; }
+    public float precoTotal { get; set; }
+    public float precoUnitario { get; set; }
 }
 

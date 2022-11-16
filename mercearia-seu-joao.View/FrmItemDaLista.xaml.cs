@@ -83,6 +83,9 @@ namespace mercearia_seu_joao.View
                         CaixaDeMensagem_Vendedor.ExibirMesagemProdutoExcluido();
                     }
                 }
+            }
+            else
+            {
                 CaixaDeMensagem_Vendedor.ExibirMesagemErroProdutoExcluido();
             }
         }

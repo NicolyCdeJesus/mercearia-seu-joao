@@ -27,21 +27,37 @@ namespace mercearia_seu_joao.View
         float precoTotal_ = 0;
         float precoUnitario = 0;
         float valorFinal = 0;
+        bool achouId = false;
 
         public FrmVenderProduto()
         {
             InitializeComponent();
         }
 
-        private void BuscarProduto(object sender, RoutedEventArgs e)
+        private void BuscarOProdutoId(object sender, RoutedEventArgs e)
         {
-            if (txtCampoId.Text == "")
+            if (txtCampoId.Text != "")
             {
-                txtCampoQtd.IsReadOnly = true; // não permite escrever
+                txtCampoQtd.IsReadOnly = false; // não permite escrever
+                txtCampoNome.Text = ConsultasProduto_Vendedor.RetornaNome(int.Parse(txtCampoId.Text));
+                if(txtCampoNome.Text == "")
+                {
+                    achouId = true;
+                    MessageBoxResult result = MessageBox.Show(
+                    "Insira um Id válido!",
+                    "Excluir Produto",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Exclamation);
+                }
+                else
+                {
+                    CalcularPrecoTotal2();
+                }
+
             }
             else
             {
-                txtCampoQtd.IsReadOnly = false; // permite escrever
+                txtCampoQtd.IsReadOnly = true; // permite escrever
             }
         }
 
@@ -90,8 +106,8 @@ namespace mercearia_seu_joao.View
                 int.Parse(txtCampoId.Text),
                 txtCampoNome.Text,
                 int.Parse(txtCampoQtd.Text),
-                int.Parse(txtCampoPrecoTotal.Text)
-                );
+                int.Parse(txtPrecoTotal.Text)
+                ); 
 
             if (foiInserido == true)
             {
@@ -138,32 +154,42 @@ namespace mercearia_seu_joao.View
             float qtd = 0;
             float precoTotal = 0;
             float valorFinal = 0;
+            float precoUnitario = 0;
         }
         private void AtualizaDataGrid()
         {
             listaDeProdutos.Clear();
-            //listaDeProdutos = ConsultasProduto_Vendedor.ObterTodosProdutos();
+            listaDeProdutos = ConsultasProduto_Vendedor.ObterTodosProdutos();
             dgvProdutos.ItemsSource = listaDeProdutos;
             dgvProdutos.Items.Refresh();
         }
         private void PrecoTotal()
         {
             qtd = float.Parse(txtCampoQtd.Text);
+            precoTotal_= float.Parse(txtCampoPrecoTotal.Text);
             //precoUnitario = float.Parse(txtPrecoUnitario.Text);
             precoTotal_ = qtd * precoUnitario;
             txtCampoPrecoTotal.Text = precoTotal_.ToString();
         }
         private void ValorFinal()
         {
-            //precoUnitario = float.Parse(txtPrecoUnitario.Text);
+            //precoUnitario = float.Parse(precoUnitario.Text);
             //valorFinal = precoUnitario +;
         }
 
-
-       /* internal void Show()
+        private void calcularPrecoTotal(object sender, TextChangedEventArgs e)
         {
-            throw new NotImplementedException();
-        } */
+            if (achouId && txtCampoQtd.Text != "" && txtCampoQtd.Text != "0")
+            {
+                precoTotal_ =  CalcularPrecoTotal2();
+            }
+            
+            
+        }
 
+        private void CalcularPrecoTotal2()
+        {
+            ConsultasProduto_Vendedor.RetornaPreco(int.Parse(txtCampoId.Text));
+        }
     }
 }

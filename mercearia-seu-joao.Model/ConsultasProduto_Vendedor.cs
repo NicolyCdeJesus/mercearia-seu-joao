@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 
 namespace mercearia_seu_joao.Model
 {
+    
     public class ConsultasProduto_Vendedor
     {
-        // Cadastra o produto no banco de dados
-        public static bool InserirProduto(int id, string nome, int quantidade, int precoTotal)
+        public static bool InserirProduto(int id, string nome, int quantidade, float precoTotal)
         {
-            var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
+            var conexao = new
+            MySqlConnection(ConexaoBD.Connection.ConnectionString);
             bool foiInserido = false;
             try
             {
                 conexao.Open();
                 var comando = conexao.CreateCommand();
                 comando.CommandText = @"
-                INSERT INTO Produto (id, nome, quantidade) 
-                VALUES(@id , @nome, @quantidade)";
+                    INSERT INTO Produto (id, nome,  qtd, fornecedor, precoUnitario) 
+                    VALUES(@nome,@qtd,@fornecedor,@precoUnitario)";
                 comando.Parameters.AddWithValue("@id", id);
                 comando.Parameters.AddWithValue("@nome", nome);
-                comando.Parameters.AddWithValue("@quantidade", quantidade);
-                comando.Parameters.AddWithValue("precoTotal", precoTotal);
-
+                comando.Parameters.AddWithValue("@qtd", quantidade);
+                comando.Parameters.AddWithValue("@precoTotal", precoTotal);
                 var leitura = comando.ExecuteReader();
                 foiInserido = true;
             }
@@ -43,11 +43,38 @@ namespace mercearia_seu_joao.Model
             return foiInserido;
         }
 
-
-        //public static bool AlterarProduto_(string text)
-        //{
-        //throw new NotImplementedException();
-        //}
+        // Cadastra o produto no banco de dados
+        public static bool BuscarProduto(int id, string nome, int quantidade, int precoUnitario)
+        {
+            var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
+            bool buscarProduto = false;
+            try
+            {
+                conexao.Open();
+                var comando = conexao.CreateCommand();
+                comando.CommandText = @"
+                    SELECT Produto
+                    SET nome = @nome, quantidade = @qtd, precoUnitario = @precoUnitario
+                    WHERE id = @id";
+                comando.Parameters.AddWithValue("@id", id);
+                comando.Parameters.AddWithValue("@qtd", quantidade);
+                comando.Parameters.AddWithValue("@precoUnitario", precoUnitario);
+                var leitura = comando.ExecuteReader();
+                buscarProduto = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (conexao.State == System.Data.ConnectionState.Open)
+                {
+                    conexao.Close();
+                }
+            }
+            return buscarProduto;
+        }
 
         //Exclui um produto do banco de dados - REMOVE
         public static bool ExcluirProduto(int id)
@@ -131,7 +158,7 @@ namespace mercearia_seu_joao.Model
                     produto.id = leitura.GetInt32("id");
                     produto.nome = leitura.GetString("nome");
                     produto.quantidade = leitura.GetInt32("quantidade");
-                    produto.precoTotal = leitura.GetInt32("precoTotal");
+                    produto.precoUnitario = leitura.GetInt32("precoUnitario");
                     listaDeProdutos.Add(produto);
                 }
             }
@@ -148,7 +175,6 @@ namespace mercearia_seu_joao.Model
             }
             return listaDeProdutos;
         }
-
 
         public static bool VerificarProdutoExistente(int id)
         {
@@ -182,26 +208,23 @@ namespace mercearia_seu_joao.Model
             return produtoExiste;
         }
 
-
-        public static bool AlterarProduto_(int quantidade, int precoTotal)
+        public static string RetornaNome(int id)
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
-            bool foiAlterado_ = false;
+            string nome = string.Empty;
             try
             {
                 conexao.Open();
                 var comando = conexao.CreateCommand();
                 comando.CommandText = @"
-                    UPDATE Produto
-                    SET quantidade = @quantidade, precoTotal = @precoTotal
-                    WHERE id = @id";
-                comando.Parameters.AddWithValue("@quantidade", quantidade);
-                comando.Parameters.AddWithValue("@precoTotal", precoTotal);
+                    SELECT nome FROM Produto WHERE id = @id";
+                comando.Parameters.AddWithValue("@id", id);
                 var leitura = comando.ExecuteReader();
-                foiAlterado_ = true;
+                while (leitura.Read())
+                {
+                    nome = leitura.GetString("nome");
+                }
             }
-
-
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
@@ -213,9 +236,38 @@ namespace mercearia_seu_joao.Model
                     conexao.Close();
                 }
             }
-            return foiAlterado_;
-
-
+            return nome;
+        }
+        public static float RetornaPreco(int id)
+        {
+            var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
+            float preco = 0;
+            try
+            {
+                conexao.Open();
+                var comando = conexao.CreateCommand();
+                comando.CommandText = @"
+                    SELECT precoUnitario FROM Produto WHERE id = @id";
+                comando.Parameters.AddWithValue("@id", id);
+                var leitura = comando.ExecuteReader();
+                while (leitura.Read())
+                {
+                    preco = leitura.GetFloat("precoUnitario");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (conexao.State == System.Data.ConnectionState.Open)
+                {
+                    conexao.Close();
+                }
+            }
+            return preco;
         }
     }
+
 }

@@ -13,26 +13,26 @@
             <TextBlock x:Name="txtNome" HorizontalAlignment="Left" Margin="18,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="71" FontSize="18" FontFamily="Corbel"><Run Language="pt-br" Text="Nome"/><Run Text="   "/></TextBlock>
             <TextBox x:Name="txtCampoNome" HorizontalAlignment="Left" Margin="18,142,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206" BorderBrush="#FFACACAC" Background="#FFEBF6F7" Height="38" IsReadOnly="True"/>
             <TextBlock x:Name="txtQtd" HorizontalAlignment="Left" Margin="18,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="100" FontFamily="Corbel" FontSize="18"><Run Language="pt-br" Text="Quantidade"/><Run Text="   "/></TextBlock>
-            <TextBox x:Name="txtCampoQtd" HorizontalAlignment="Left" Margin="18,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" BorderBrush="#FFACACAC" Background="#FFEBF6F7" Height="24" IsReadOnly="True"/>
+            <TextBox x:Name="txtCampoQtd" HorizontalAlignment="Left" Margin="18,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" BorderBrush="#FFACACAC" Background="#FFEBF6F7" Height="24" IsReadOnly="True" TextChanged="calcularPrecoTotal"/>
             <TextBlock x:Name="txtPrecoTotal" HorizontalAlignment="Left" Margin="152,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="88" FontSize="18" FontFamily="Corbel" Text="Preço Total"/>
             <TextBox x:Name="txtCampoPrecoTotal" HorizontalAlignment="Left" Margin="152,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="71" BorderBrush="#FFACACAC" Background="#FFEBF6F7" Height="24" IsReadOnly="True"/>
             <Button x:Name="btnAdicionar" Content="Adicionar" HorizontalAlignment="Left" Margin="18,262,0,0" VerticalAlignment="Top" Height="39" Width="205" Background="#FF93D3E4" BorderBrush="#FF93D3E4" Foreground="Black" FontSize="18" FontFamily="Corbel" Click="AdicionarProduto"/>
-            <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="126,64,0,0" VerticalAlignment="Top" Width="100" Height="37" BorderBrush="#FF93D3E4" Background="#FF93D3E4" Foreground="Black" FontSize="18" FontFamily="Corbel" Click="BuscarProduto"/>
+            <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="126,64,0,0" VerticalAlignment="Top" Width="100" Height="37" BorderBrush="#FF93D3E4" Background="#FF93D3E4" Foreground="Black" FontSize="18" FontFamily="Corbel" Click="BuscarOProdutoId"/>
             <Button x:Name="btnRealizarVenda" Content="Realizar Venda" HorizontalAlignment="Left" Margin="18,491,0,0" VerticalAlignment="Top" Height="41" Width="205" Background="#FF93D3E4" BorderBrush="#FF93D3E4" Foreground="Black" FontSize="18" FontFamily="Corbel" Click="RealizarVenda"/>
             <TextBlock x:Name="txtValorFinal" HorizontalAlignment="Left" Margin="18,460,0,0" TextWrapping="Wrap" Text="Valor Final: R$0000,00" VerticalAlignment="Top" Height="26" Width="251" FontSize="18" FontWeight="Bold" FontFamily="Corbel"/>
             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="   Vender Produto" VerticalAlignment="Top" Height="29" Width="800" Background="#FFEBF6F7" FontSize="18" FontFamily="Corbel"/>
 
-            <DataGrid x:Name="dgvProdutos" HorizontalAlignment="Left" Width="487" Margin="303,92,0,58" IsReadOnly="True" AutoGenerateColumns="False" MouseDoubleClick="AbrirFrmItemDaLista">
+            <DataGrid x:Name="dgvProdutos" HorizontalAlignment="Left" Width="487" Margin="274,87,0,62" IsReadOnly="True" AutoGenerateColumns="False" MouseDoubleClick="AbrirFrmItemDaLista">
                 <DataGrid.Columns>
-                    <DataGridTextColumn FontFamily="Corbel" Header="ID"/>
-                    <DataGridTextColumn FontFamily="Corbel" Header="Nome"/>
-                    <DataGridTextColumn FontFamily="Corbel" Header="Quantidade"/>
+                    <DataGridTextColumn Binding="{Binding id}" Header="Id"/>
+                    <DataGridTextColumn Binding="{Binding nome}" Header="Nome"/>
+                    <DataGridTextColumn Binding="{Binding quantidade}" Header="Quantidade"/>
                 </DataGrid.Columns>
             </DataGrid>
 
 
             <Button x:Name="btnLimpar" Content="Limpar" HorizontalAlignment="Left" Margin="18,309,0,0" VerticalAlignment="Top" Height="39" Width="205" Background="#FF93D3E4" BorderBrush="#FF93D3E4" Foreground="Black" FontSize="18" FontFamily="Corbel" Click="Limpar"/>
-            <TextBlock x:Name="txtListaDeCompra" HorizontalAlignment="Left" Margin="303,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="126" FontSize="18" FontFamily="Corbel" Text="Lista de Compra"/>
+            <TextBlock x:Name="txtListaDeCompra" HorizontalAlignment="Left" Margin="274,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="126" FontSize="18" FontFamily="Corbel" Text="Lista de Compra"/>
 
 
         </Grid>
