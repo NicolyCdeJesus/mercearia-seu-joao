@@ -71,7 +71,7 @@ public class ConsultasProduto
         return foiExcluido;
     }
     //Altera um produto no banco de dados - UPDATE
-    public static bool AtualizarProduto(int id, string nome, string fornecedor, int quantidade, float precounitario)
+    public static bool AtualizarProduto(int id, string nome, string fornecedor, int quantidade, double precounitario)
     {
         var conexao = new
        MySqlConnection(ConexaoBD.Connection.ConnectionString);
