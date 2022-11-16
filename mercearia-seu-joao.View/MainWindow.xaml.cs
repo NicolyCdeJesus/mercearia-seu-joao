@@ -22,14 +22,13 @@ namespace mercearia_seu_joao.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        Usuario usuarioLogado = new Usuario();
         public MainWindow()
         {
             InitializeComponent();
         }
         //Classes apenas (ValidarCampos + Esqueceu senha + messagebox) e Layout feito dia 7/11
         //Não enviado ao Git por falta de internet...
-
-        //Metodos, if's, etc nas classes, feito tudo dia 08/11
 
         public void EsqueceuSenha(object sender, MouseButtonEventArgs e)
         {
@@ -46,7 +45,7 @@ namespace mercearia_seu_joao.View
         {
             if (CampoPreenchido() == true && UsuarioExiste() == true)
             {
-                FrmMenu frmmenu = new FrmMenu();
+                FrmMenu frmmenu = new FrmMenu(usuarioLogado);
                 frmmenu.Show();
                 Close();
            
@@ -55,7 +54,7 @@ namespace mercearia_seu_joao.View
             else
             {
                 MessageBoxResult result = MessageBox.Show(
-                   "Você não completou os requisitos!",
+                   "Você não completou os requisitos corretamente!",
                    "Atenção",
 
                 MessageBoxButton.OK,
@@ -65,25 +64,28 @@ namespace mercearia_seu_joao.View
         }
         public bool UsuarioExiste()
         {
-            Usuario listaDeUsuarios = new Usuario();
-            Usuario usuario = new Usuario();
-            string txtEmail = "";
-            string txtSenha = "";
 
-            if (txtEmail == usuario.email && txtSenha == usuario.senha && usuario == listaDeUsuarios)
+            Usuario obteveUsuario = ConsultasUsuario.ObterUsuario(txtEmail.Text, txtSenha.Password);
+
+            if (obteveUsuario != null)
             {
+                usuarioLogado = obteveUsuario;
+                MessageBoxResult result = MessageBox.Show(
+                    "Login efetuado com sucesso!",
+                    "Check!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
                 return true;
             }
             else
             {
                 MessageBoxResult result = MessageBox.Show(
-                 "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
-                 "Atenção",
+                    "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
+                    "Aviso!",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
 
-               MessageBoxButton.OK,
-               MessageBoxImage.Warning
-               );
-                return false;
+               return false;
             }
         }
        

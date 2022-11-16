@@ -59,7 +59,7 @@ namespace mercearia_seu_joao.View
             {
                 int id = int.Parse(txtID.Text);
                 MessageBoxResult result = MessageBox.Show(
-                "Deseja alterar o produto id: {id} ?",
+                $"Deseja alterar o produto id: {id} ?",
                 "Alterar o produto",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question);
@@ -70,8 +70,9 @@ namespace mercearia_seu_joao.View
                     txtNomeProduto.Text,
                     txtFornecedor.Text,
                     int.Parse(txtQuantidade.Text),
-                    float.Parse(txtPrecoUnitario.Text)
+                    double.Parse(txtPrecoUnitario.Text)
                     );
+
                     if (foiAtualizado == true)
                     {
                         CaixaDeMensagem.ExibirMenssagemProdutoAtualizado();
@@ -111,7 +112,6 @@ namespace mercearia_seu_joao.View
                     }
                 }
             }
-
         }
 
         private bool VerificaCampos()
@@ -135,7 +135,7 @@ namespace mercearia_seu_joao.View
         }
         private void AdicionaProduto()
         {
-            bool foiInserido = ConsultasProduto.NovoProduto(
+            bool foiInserido = ConsultasProduto.InserirProduto(
             txtNomeProduto.Text,
             txtFornecedor.Text,
             int.Parse(txtQuantidade.Text),
@@ -155,7 +155,7 @@ namespace mercearia_seu_joao.View
         private void AtualizaDataGrid()
         {
             listaDeProdutos.Clear();
-            //listaDeProdutos = ConsultasProduto.ObterTodosProdutos();
+            listaDeProdutos = ConsultasProduto.ObterTodosProdutos();
             dgvProdutos.ItemsSource = listaDeProdutos;
             dgvProdutos.Items.Refresh();
         }
