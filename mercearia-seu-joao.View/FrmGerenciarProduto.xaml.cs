@@ -20,7 +20,7 @@ namespace mercearia_seu_joao.View
     /// </summary>
     public partial class FrmGerenciarProduto : Window
     {
-        List<produto_Vendedor> listaDeProdutos = new List<produto_Vendedor>();
+        List<Produto> listaDeProdutos = new List<Produto>();
         public FrmGerenciarProduto()
         {
             InitializeComponent();
@@ -155,13 +155,13 @@ namespace mercearia_seu_joao.View
         private void AtualizaDataGrid()
         {
             listaDeProdutos.Clear();
-            listaDeProdutos = ConsultasProduto.ObterTodosProdutos();
+            //listaDeProdutos = ConsultasProduto.ObterTodosProdutos();
             dgvProdutos.ItemsSource = listaDeProdutos;
             dgvProdutos.Items.Refresh();
         }
         private void PegarItemNoGrid(object sender, MouseButtonEventArgs e)
         {
-            produto_Vendedor produto = (produto_Vendedor)dgvProdutos.SelectedItem;
+            Produto produto = (Produto)dgvProdutos.SelectedItem;
             txtID.Text = produto.id.ToString();
             txtNomeProduto.Text = produto.nome;
             txtFornecedor.Text = produto.fornecedor;
