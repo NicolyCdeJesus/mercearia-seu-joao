@@ -1,4 +1,4 @@
-﻿using mercearia_seu_joao.View;
+﻿using mercearia_seu_joao.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,6 @@ namespace mercearia_seu_joao.View
     public partial class FrmItemDaLista : Window
     {
         List<produto_Vendedor> listaDeProdutos = new List<produto_Vendedor>();
-        double n = 0;
         public FrmItemDaLista()
         {
             InitializeComponent();
@@ -29,20 +28,48 @@ namespace mercearia_seu_joao.View
 
         private void AlterarProduto(object sender, RoutedEventArgs e)
         {
-            n = Double.Parse(txtCampoQtdLista.Text);
+            if (txtCampoIdLista.Text != "")
+            {
+                int id = int.Parse(txtCampoIdLista.Text);
+                MessageBoxResult result = MessageBox.Show(
+                    $"Deseja alterar o produto id:{id} ?",
+                    "Alterar o produto",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    for (int i = 0; i < listaDeProdutos.Count; i++)
+                    {
+                        if (listaDeProdutos[i].id == id)
+                        {
+                            listaDeProdutos[i].id = int.Parse(txtCampoIdLista.Text);
+                            listaDeProdutos[i].nome = txtCampoNomeLista.Text;
+                            listaDeProdutos[i].quantidade = int.Parse(txtCampoQtdLista.Text);
+                            break;
+                        }
+                    }
+                    //AtualizaDataGrid_();
+                    LimpaCampos();
+                    CaixaDeMensagem_Vendedor.ExibirMensagemProdutoAtualizado();
+                }
 
+            }
+            else
+            {
+                CaixaDeMensagem_Vendedor.ExibirMensagemErroProdutoAtualizado();
+            }
         }
-
         private void ExcluirProduto(object sender, RoutedEventArgs e)
         {
             if (txtCampoIdLista.Text != "")
             {
                 int id = int.Parse(txtCampoIdLista.Text);
                 MessageBoxResult result = MessageBox.Show(
-                $"Deseja excluir o produto id:{id} ?",
-                "Excluir Produto",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question);
+                    $"Deseja excluir o produto id:{id} ?",
+                    "Excluir Produto",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
                 if (result == MessageBoxResult.Yes)
                 {
                     foreach (produto_Vendedor produto in listaDeProdutos)
@@ -52,21 +79,26 @@ namespace mercearia_seu_joao.View
                             listaDeProdutos.Remove(produto);
                             break;
                         }
-                        //AtualizaDataGrid2(DataGrid dgvProduto);
-                        MessageBoxResult result2 = MessageBox.Show(
-                            "Produto excluído!",
-                            "Atenção",
-                             MessageBoxButton.OK,
-                            MessageBoxImage.Information);
+                        //AtualizaDataGrid_();
+                        CaixaDeMensagem_Vendedor.ExibirMesagemProdutoExcluido();
                     }
                 }
+                CaixaDeMensagem_Vendedor.ExibirMesagemErroProdutoExcluido();
             }
         }
 
-       private void AtualizaDataGrid2(DataGrid dgvProduto)
-       {
+        private void AtualizaDataGrid_()
+        {
             //dgvProdutos.ItemsSource = listaDeProdutos;
-           //dgvProdutos.Items.Refresh();
+            //dgvProdutos.Items.Refresh();
         }
+        private void LimpaCampos()
+        {
+            txtCampoIdLista.Text = "";
+            txtCampoNomeLista.Text = "";
+            txtCampoQtdLista.Text = "";
+        }
+
     }
+
 }

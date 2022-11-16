@@ -107,11 +107,11 @@ public class ConsultasProduto
         return foiAtualizado;
     }
     //Retrona todos os produtos - READ
-    public static List<produto_Vendedor> ObterTodosProdutos()
+    public static List<Produto> ObterTodosProdutos()
     {
         var conexao = new
        MySqlConnection(ConexaoBD.Connection.ConnectionString);
-        List<produto_Vendedor> listaDeProdutos = new List<produto_Vendedor>();
+        List<Produto> listaDeProdutos = new List<Produto>();
         try
         {
             conexao.Open();
@@ -121,7 +121,7 @@ public class ConsultasProduto
             var leitura = comando.ExecuteReader();
             while (leitura.Read())
             {
-                produto_Vendedor produto = new produto_Vendedor();
+                Produto produto = new Produto();
                 produto.id = leitura.GetInt32("id");
                 produto.nome = leitura.GetString("nome");
                 produto.qtd = leitura.GetInt32("qtd");               
