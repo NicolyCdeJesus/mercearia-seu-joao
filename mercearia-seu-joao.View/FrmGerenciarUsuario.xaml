@@ -27,12 +27,11 @@
         <TextBlock HorizontalAlignment="Left" Margin="15,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Corbel"><Run Language="pt-br" Text="Senha"/></TextBlock>
         <DataGrid x:Name="dgvUsuario" HorizontalAlignment="Left" Width="543" Margin="117,38,0,40" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" FontFamily="Corbel"/>
-                <DataGridTextColumn Header="Nome" FontFamily="Corbel"/>
-                <DataGridTextColumn Header="Tipo Usuário" FontFamily="Corbel"/>
-                <DataGridTextColumn Header="E-mail" FontFamily="Corbel"/>
-                <DataGridTextColumn FontFamily="Corbel" Header="Senha"/>
-                <DataGridTextColumn FontFamily="Corbel" Header="Confirmar Senha"/>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID" FontFamily="Corbel"/>
+                <DataGridTextColumn Binding="{Binding nome}" Header="Nome" FontFamily="Corbel"/>
+                <DataGridTextColumn Binding="{Binding tipoUsuario}" Header="Tipo Usuário" FontFamily="Corbel"/>
+                <DataGridTextColumn Binding="{Binding email}" Header="E-mail" FontFamily="Corbel"/>
+                <DataGridTextColumn Binding="{Binding senha}" Header="Senha"/>
             </DataGrid.Columns>
         </DataGrid>
         <PasswordBox x:Name="txtSenha" HorizontalAlignment="Left" Margin="15,188,0,0" VerticalAlignment="Top" Width="173" Grid.ColumnSpan="2" Background="#FFF9FDFD" Height="20"/>
