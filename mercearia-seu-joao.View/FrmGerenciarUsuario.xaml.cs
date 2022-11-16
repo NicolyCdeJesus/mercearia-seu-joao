@@ -49,7 +49,7 @@ namespace mercearia_seu_joao.View
                     else
                     {
                         CaixaDeMensagem.CamposSenhaEConfirmarSenhaDiferentes();
-                    }
+                    } 
                 }
                 else
                 {
