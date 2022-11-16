@@ -195,7 +195,7 @@ namespace mercearia_seu_joao.View
                 }
                 else
                 {
-                    CaixaDeMensagem.ExibirMenssagemErroUsuarioCadastrado();
+                    CaixaDeMensagem.ExibirMenssagemErroUsuarioCadastrado(); 
                 }
             }
 
@@ -206,7 +206,7 @@ namespace mercearia_seu_joao.View
         }
 
 
-        /*public bool VerificarParametrosDaSenha()
+        /*public void VerificarParametrosDaSenha()
         {
             if(txtSenha.Password.Length > 8)
             {
@@ -220,24 +220,24 @@ namespace mercearia_seu_joao.View
                         }
                         else
                         {
-                            return false;
+                            CaixaDeMensagem.SenhaFraca();
                         }
                     }
                     else
                     {
-                        return false;
+                        CaixaDeMensagem.SenhaFraca();
                     }
                 }
                 else
                 {
-                    return false;
+                    CaixaDeMensagem.SenhaFraca();
                 }
             }
             else
             {
-                return false;
+                CaixaDeMensagem.SenhaFraca();
             }
         }*/
-        
+
     }
 }

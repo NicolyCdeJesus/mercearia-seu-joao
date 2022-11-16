@@ -189,6 +189,37 @@ namespace mercearia_seu_joao.Model
                 }
             }
             return usuarioExiste;
+      }
+
+        public void ValidarLogin()
+        {
+            var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
+            try
+            {
+                //abrindo comando para conectar
+                conexao.Open();
+                var comando = conexao.CreateCommand();
+                comando.CommandText = @"
+            select from Usuario where tipoUsuario = @tipoUsuario and id = @id";
+
+                var leitura = comando.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            finally
+            {
+                if (conexao.State == System.Data.ConnectionState.Open)
+                {
+                    conexao.Close();
+                }
+            }
+
         }
     }
+
+
 }
+
