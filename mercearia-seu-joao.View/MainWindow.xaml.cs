@@ -55,7 +55,7 @@ namespace mercearia_seu_joao.View
             else
             {
                 MessageBoxResult result = MessageBox.Show(
-                   "Você não completou os requisitos!",
+                   "Você não completou os requisitos corretamente!",
                    "Atenção",
 
                 MessageBoxButton.OK,
@@ -78,7 +78,7 @@ namespace mercearia_seu_joao.View
             {
                 MessageBoxResult result = MessageBox.Show(
                  "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
-                 "Atenção",
+                 "Nah ah ah, você não disse a palavra magica!",
 
                MessageBoxButton.OK,
                MessageBoxImage.Warning
