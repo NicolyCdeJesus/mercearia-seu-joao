@@ -90,6 +90,15 @@ namespace mercearia_seu_joao.Model
                                MessageBoxButton.OK,
                                MessageBoxImage.Warning);
         }
+        public static void SenhaFraca()
+        {
+            MessageBoxResult result2 = MessageBox.Show(
+                               "A senha deve ter no mínimo 8 caracteres, letras maiúsculas, minúsculas, números e caracteres especiais!",
+                               "Aviso!",
+                               MessageBoxButton.OK,
+                               MessageBoxImage.Warning);
+        }
+
 
 
 
