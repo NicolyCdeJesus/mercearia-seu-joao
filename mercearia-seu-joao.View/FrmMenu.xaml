@@ -11,7 +11,7 @@
             <ColumnDefinition Width="18*"/>
             <ColumnDefinition Width="157*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnSair" Content="" HorizontalAlignment="Left" Margin="576,360,0,0" VerticalAlignment="Top" Height="33" Width="34" Foreground="White" BorderBrush="White" Click="Sair" Grid.Column="1">
+        <Button x:Name="btnSair" Content="" HorizontalAlignment="Left" Margin="584,360,0,0" VerticalAlignment="Top" Height="33" Width="34" Foreground="White" BorderBrush="White" Click="Sair" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="/sair.png"/>
             </Button.Background>

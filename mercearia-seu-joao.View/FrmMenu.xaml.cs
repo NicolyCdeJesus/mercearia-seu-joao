@@ -39,7 +39,7 @@ namespace mercearia_seu_joao.View
             var leitura = comando.ExecuteReader();
             if (leitura.Read())
             {
-                //Verifica o tipo de usuário
+                //Verifica o usuário
                 string tipoUsuario = leitura.GetString("tipoUsuario");
                 if (tipoUsuario.Equals("Gerente"))
                 {
