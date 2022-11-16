@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace mercearia_seu_joao.View
 {
     /// <summary>
@@ -22,8 +23,10 @@ namespace mercearia_seu_joao.View
     {
         List<produto_Vendedor> listaDeProdutos = new List<produto_Vendedor>();
 
-        double numero = 0;
-        double ValorTotal = 0;
+        float qtd = 0;
+        float precoTotal_ = 0;
+        float precoUnitario = 0;
+        float valorFinal = 0;
 
         public FrmVenderProduto()
         {
@@ -44,66 +47,123 @@ namespace mercearia_seu_joao.View
 
         private void AdicionarProduto(object sender, RoutedEventArgs e)
         {
-            produto_Vendedor produto = new produto_Vendedor();
-            produto.id = RetortnaUltimoIdIncrementadoDaLista();
-            produto.nome = txtCampoNome.Text;
-            produto.quantidade = int.Parse(txtCampoQtd.Text);
-            listaDeProdutos.Add(produto);
-            numero = Double.Parse(txtCampoQtd.Text);
-            ValorTotal = numero * 5.00;
-            txtCampoPrecoTotal.Text = ValorTotal.ToString();
-        }
+            if (VerificaCampos() == true)
+            {
+                AdicionaProduto();
+            }
+            else
+            {
+                CaixaDeMensagem_Vendedor.ExibirMensagemErroProdutoCadastrado();
+            }
 
-        private void AtualizaDataGrid()
-        {
-            dgvProdutos.ItemsSource = listaDeProdutos;
-            dgvProdutos.Items.Refresh();
         }
-
         private void Limpar(object sender, RoutedEventArgs e)
         {
-            txtCampoId.Text = "";
-            txtCampoNome.Text = "";
-            txtCampoQtd.Text = "";
-            txtCampoPrecoTotal.Text = "";
-            numero = 0;
-            ValorTotal = 0;
+            LimpaTodosOsCampos();
         }
 
         private void RealizarVenda(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Venda Realizada",
-                "Informarion",
-                MessageBoxButton.OK,
-                MessageBoxImage.None);
-        }
-
-        private int RetortnaUltimoIdIncrementadoDaLista()
-{
-            int id = 0;
-            if (listaDeProdutos.Count > 0)
+            if (RealizaVenda() == true)
             {
-                int index = listaDeProdutos.Count - 1;
-                id = listaDeProdutos[index].id;
+                CaixaDeMensagem_Vendedor.ExibirMensagemVendaRealizada();
             }
-            id++;
-            return id;
+            else
+            {
+                CaixaDeMensagem_Vendedor.ExibirMensagemErroVendaRealizada();
+            }
         }
-
         private void AbrirFrmItemDaLista(object sender, MouseButtonEventArgs e)
         {
             produto_Vendedor produto = (produto_Vendedor)dgvProdutos.SelectedItem;
             txtCampoNome.Text = produto.nome;
             txtCampoId.Text = produto.id.ToString();
             txtCampoQtd.Text = produto.quantidade.ToString();
+            txtCampoPrecoTotal.Text = produto.precoTotal.ToString();
             Close();
             FrmItemDaLista frmItemDaLista = new FrmItemDaLista();
             frmItemDaLista.Show();
         }
+        private void AdicionaProduto()
+        {
+            bool foiInserido = ConsultasProduto_Vendedor.InserirProduto(
+                int.Parse(txtCampoId.Text),
+                txtCampoNome.Text,
+                int.Parse(txtCampoQtd.Text),
+                int.Parse(txtCampoPrecoTotal.Text)
+                );
 
-        internal void Show()
+            if (foiInserido == true)
+            {
+                CaixaDeMensagem_Vendedor.ExibirMensagemProdutoCadastrado();
+                LimpaTodosOsCampos();
+                AtualizaDataGrid();
+
+            }
+            else
+            {
+                CaixaDeMensagem_Vendedor.ExibirMensagemErroProdutoCadastrado();
+            }
+        }
+        private bool VerificaCampos()
+        {
+            if (txtCampoId.Text != "" && txtCampoNome.Text != "" && txtCampoQtd.Text != "" && txtCampoPrecoTotal.Text != "")
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private bool RealizaVenda()
+        {
+            if (txtCampoId.Text != "" && txtCampoNome.Text != "" && txtCampoQtd.Text != "" && txtCampoPrecoTotal.Text != "")
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void LimpaTodosOsCampos()
+        {
+            txtCampoId.Text = "";
+            txtCampoNome.Text = "";
+            txtCampoQtd.Text = "";
+            txtCampoPrecoTotal.Text = "";
+            float qtd = 0;
+            float precoTotal = 0;
+            float valorFinal = 0;
+        }
+        private void AtualizaDataGrid()
+        {
+            listaDeProdutos.Clear();
+            //listaDeProdutos = ConsultasProduto_Vendedor.ObterTodosProdutos();
+            dgvProdutos.ItemsSource = listaDeProdutos;
+            dgvProdutos.Items.Refresh();
+        }
+        private void PrecoTotal()
+        {
+            qtd = float.Parse(txtCampoQtd.Text);
+            //precoUnitario = float.Parse(txtPrecoUnitario.Text);
+            precoTotal_ = qtd * precoUnitario;
+            txtCampoPrecoTotal.Text = precoTotal_.ToString();
+        }
+        private void ValorFinal()
+        {
+            //precoUnitario = float.Parse(txtPrecoUnitario.Text);
+            //valorFinal = precoUnitario +;
+        }
+
+
+       /* internal void Show()
         {
             throw new NotImplementedException();
-        }
+        } */
+
     }
 }
