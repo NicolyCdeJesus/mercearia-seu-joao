@@ -155,7 +155,7 @@ namespace mercearia_seu_joao.View
         private void AtualizaDataGrid()
         {
             listaDeProdutos.Clear();
-            //listaDeProdutos = ConsultasProduto.ObterTodosProdutos();
+            listaDeProdutos = ConsultasProduto.ObterTodosProdutos();
             dgvProdutos.ItemsSource = listaDeProdutos;
             dgvProdutos.Items.Refresh();
         }
