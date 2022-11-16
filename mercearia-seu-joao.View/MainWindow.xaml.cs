@@ -22,6 +22,7 @@ namespace mercearia_seu_joao.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        Usuario usuarioLogado = new Usuario();
         public MainWindow()
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace mercearia_seu_joao.View
         {
             if (CampoPreenchido() == true && UsuarioExiste() == true)
             {
-                FrmMenu frmmenu = new FrmMenu();
+                FrmMenu frmmenu = new FrmMenu(usuarioLogado);
                 frmmenu.Show();
                 Close();
            
@@ -62,26 +63,29 @@ namespace mercearia_seu_joao.View
             }
         }
         public bool UsuarioExiste()
-        {   
-            
-            Usuario usuario = new Usuario();
-            string txtEmail = "";
-            string txtSenha = "";
+        {
 
-            if (txtEmail == usuario.email && txtSenha == usuario.senha)
+            Usuario obteveUsuario = ConsultasUsuario.ObterUsuario(txtEmail.Text, txtSenha.Password);
+
+            if (obteveUsuario != null)
             {
+                usuarioLogado = obteveUsuario;
+                MessageBoxResult result = MessageBox.Show(
+                    "Login efetuado com sucesso!",
+                    "Check!",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
                 return true;
             }
             else
             {
                 MessageBoxResult result = MessageBox.Show(
-                 "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
-                 "Nah ah ah, você não disse a palavra magica!",
+                    "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
+                    "Aviso!",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
 
-               MessageBoxButton.OK,
-               MessageBoxImage.Warning
-               );
-                return false;
+               return false;
             }
         }
        

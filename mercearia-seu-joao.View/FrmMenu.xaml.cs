@@ -22,10 +22,12 @@ namespace mercearia_seu_joao.View
     /// </summary>
     public partial class FrmMenu : Window
     {
-        public FrmMenu()
+        Usuario usuarioLogado = new Usuario();
+        public FrmMenu(Usuario usuario)
         {
             InitializeComponent();
-            txtUsuarioData.Text = $"Olá, hoje é dia {DateTime.Now.ToShortDateString()}";
+            usuarioLogado = usuario;
+            txtUsuarioData.Text = $"Olá {usuarioLogado.nome}, hoje é dia {DateTime.Now.ToShortDateString()}";
         }
 
         public void VerificarUsuario()

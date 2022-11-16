@@ -157,6 +157,47 @@ namespace mercearia_seu_joao.Model
 
 
 
+        //A partir daqui é a parte do sarro
+        public static Usuario ObterUsuario(string email, string senha)
+        {
+            var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
+            Usuario usuario = null;
+
+            try
+            {
+                conexao.Open();
+                var comando = conexao.CreateCommand();
+                comando.CommandText = @"
+                SELECT * FROM Usuario WHERE email = @email AND senha = @senha";
+                comando.Parameters.AddWithValue("@email", email);
+                comando.Parameters.AddWithValue("@senha", senha);
+                var leitura = comando.ExecuteReader();
+                while (leitura.Read())
+                {
+                    usuario = new Usuario();
+                    usuario.id = leitura.GetInt32("id");
+                    usuario.nome = leitura.GetString("nome");
+                    usuario.email = leitura.GetString("email");
+                    usuario.tipoUsuario = leitura.GetString("tipoUsuario");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (conexao.State == System.Data.ConnectionState.Open)
+                {
+                    conexao.Close();
+                }
+            }
+            return usuario;
+        }
+
+
+
+
 
         //A partir daqui o código vai cuidar da criptografia
         public static bool VerificarUsuarioExistente(string email)
@@ -216,10 +257,7 @@ namespace mercearia_seu_joao.Model
                     conexao.Close();
                 }
             }
-
         }
     }
-
-
 }
 
