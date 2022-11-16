@@ -28,7 +28,7 @@
                 <DataGridTextColumn Binding="{Binding nome}" Header="Nome"/>
                 <DataGridTextColumn Binding="{Binding precoUitario}" Header="Preço Unitário"/>
                 <DataGridTextColumn Binding="{Binding quantidade}" Header="Quantidade"/>
-                <DataGridTextColumn Binding="{Binding fabricante}" Header="Fabricante"/>
+                <DataGridTextColumn Binding="{Binding fornecedor}" Header="Fornecedor"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="FRM Gerenciar Produto" VerticalAlignment="Top" Width="800" Height="35" FontSize="18" FontFamily="Corbel" Background="#FFEBF6F7"/>

@@ -38,12 +38,12 @@ namespace mercearia_seu_joao.View
                 }
                 else
                 {
-                    //CaixaDeMenssagem.ExibirMenssagemIdCampoPreenchido();
+                    CaixaDeMensagem.ExibirMenssagemIdCampoPreenchido();
                 }
             }
             else
             {
-                //CaixaDeMenssagem.ExibirMenssagemPreencherCampos();
+                CaixaDeMensagem.ExibirMenssagemPreencherCampos();
             }
 
         }
@@ -74,13 +74,13 @@ namespace mercearia_seu_joao.View
                     );
                     if (foiAtualizado == true)
                     {
-                        //CaixaDeMenssagem.ExibirMenssagemProdutoAtualizado();
+                        CaixaDeMensagem.ExibirMenssagemProdutoAtualizado();
                         LimpaTodosOsCampos();
                         AtualizaDataGrid();
                     }
                     else
                     {
-                        //CaixaDeMenssagem.ExibirMenssagemErroProdutoAtualizado();
+                        CaixaDeMensagem.ExibirMenssagemErroProdutoAtualizado();
                     }
                 }
             }
@@ -101,13 +101,13 @@ namespace mercearia_seu_joao.View
                     bool foiExcluido = ConsultasProduto.ExcluirProduto(id);
                     if (foiExcluido == true)
                     {
-                       // CaixaDeMenssagem.ExibirMenssagemProdutoExcluido();
+                        CaixaDeMensagem.ExibirMenssagemProdutoExcluido();
                         LimpaTodosOsCampos();
                         AtualizaDataGrid();
                     }
                     else
                     {
-                        //CaixaDeMenssagem.ExibirMenssagemErroProdutoExcluido();
+                        CaixaDeMensagem.ExibirMenssagemErroProdutoExcluido();
                     }
                 }
             }
@@ -143,13 +143,13 @@ namespace mercearia_seu_joao.View
             );
             if (foiInserido == true)
             {
-               // CaixaDeMenssagem.ExibirMenssagemProdutoCadastrado();
+                CaixaDeMensagem.ExibirMenssagemProdutoCadastrado();
                 LimpaTodosOsCampos();
                 AtualizaDataGrid();
             }
             else
             {
-               // CaixaDeMenssagem.ExibirMenssagemErroProdutoCadastrado();
+                CaixaDeMensagem.ExibirMenssagemErroProdutoCadastrado();
             }
         }
         private void AtualizaDataGrid()
