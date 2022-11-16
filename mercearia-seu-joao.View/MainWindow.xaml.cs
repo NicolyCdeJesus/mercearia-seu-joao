@@ -29,8 +29,6 @@ namespace mercearia_seu_joao.View
         //Classes apenas (ValidarCampos + Esqueceu senha + messagebox) e Layout feito dia 7/11
         //Não enviado ao Git por falta de internet...
 
-        //Metodos, if's, etc nas classes, feito tudo dia 08/11
-
         public void EsqueceuSenha(object sender, MouseButtonEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show(
@@ -55,7 +53,7 @@ namespace mercearia_seu_joao.View
             else
             {
                 MessageBoxResult result = MessageBox.Show(
-                   "Você não completou os requisitos!",
+                   "Você não completou os requisitos corretamente!",
                    "Atenção",
 
                 MessageBoxButton.OK,
@@ -64,13 +62,13 @@ namespace mercearia_seu_joao.View
             }
         }
         public bool UsuarioExiste()
-        {
-            Usuario listaDeUsuarios = new Usuario();
+        {   
+            
             Usuario usuario = new Usuario();
             string txtEmail = "";
             string txtSenha = "";
 
-            if (txtEmail == usuario.email && txtSenha == usuario.senha && usuario == listaDeUsuarios)
+            if (txtEmail == usuario.email && txtSenha == usuario.senha)
             {
                 return true;
             }
@@ -78,7 +76,7 @@ namespace mercearia_seu_joao.View
             {
                 MessageBoxResult result = MessageBox.Show(
                  "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
-                 "Atenção",
+                 "Nah ah ah, você não disse a palavra magica!",
 
                MessageBoxButton.OK,
                MessageBoxImage.Warning

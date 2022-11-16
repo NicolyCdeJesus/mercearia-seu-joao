@@ -26,8 +26,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="Id"/>
                 <DataGridTextColumn Binding="{Binding nome}" Header="Nome"/>
-                <DataGridTextColumn Binding="{Binding precoUitario}" Header="Preço Unitário"/>
-                <DataGridTextColumn Binding="{Binding quantidade}" Header="Quantidade"/>
+                <DataGridTextColumn Binding="{Binding qtd}" Header="Qtde"/>
+                <DataGridTextColumn Binding="{Binding precoUnitario}" Header="Preço Unitário"/>
                 <DataGridTextColumn Binding="{Binding fornecedor}" Header="Fornecedor"/>
             </DataGrid.Columns>
         </DataGrid>
