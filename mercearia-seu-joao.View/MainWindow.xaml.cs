@@ -45,7 +45,7 @@ namespace mercearia_seu_joao.View
         {
             if (CampoPreenchido() == true && UsuarioExiste() == true)
             {
-                FrmMenu frmmenu = new FrmMenu("Nome Usuario");
+                FrmMenu frmmenu = new FrmMenu();
                 frmmenu.Show();
                 Close();
            
