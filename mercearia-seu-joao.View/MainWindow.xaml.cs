@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using mercearia_seu_joao.Model;
 
 namespace mercearia_seu_joao.View
 {
@@ -62,33 +63,34 @@ namespace mercearia_seu_joao.View
 );
             }
         }
-                public bool UsuarioExiste()
-                {
-                    Usuario usuario = new Usuario();
-                    string txtEmail = "";
-                    string txtSenha = "";
+        public bool UsuarioExiste()
+        {
+            Usuario listaDeUsuarios = new Usuario();
+            Usuario usuario = new Usuario();
+            string txtEmail = "";
+            string txtSenha = "";
 
-                    if (txtEmail == usuario.email && txtSenha == usuario.senha)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        MessageBoxResult result = MessageBox.Show(
-                         "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
-                         "Atenção",
+            if (txtEmail == usuario.email && txtSenha == usuario.senha && usuario == listaDeUsuarios)
+            {
+                return true;
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show(
+                 "O Email ou senha inserido não existe, verifique se foi digitado corretamente ou cadastre-se.",
+                 "Atenção",
 
-                       MessageBoxButton.OK,
-                       MessageBoxImage.Warning
-                       );
-                        return false;
-                    }
-                }
+               MessageBoxButton.OK,
+               MessageBoxImage.Warning
+               );
+                return false;
+            }
+        }
        
 
         public bool CampoPreenchido()
         {
-            if (txtEmail.Text == "" && txtSenha.Password == "")
+            if (txtEmail.Text != "" && txtSenha.Password != "")
             {
                 return true;
             }
@@ -105,5 +107,7 @@ namespace mercearia_seu_joao.View
                 return false;
             }
         }
+
+
     }
 }
