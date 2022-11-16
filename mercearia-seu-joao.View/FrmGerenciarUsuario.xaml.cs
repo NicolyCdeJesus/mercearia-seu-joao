@@ -42,7 +42,14 @@ namespace mercearia_seu_joao.View
             {
                 if (txtId.Text == "")
                 {
-                    AdicionaUsuario();
+                    if (txtConfirmarSenha.Password == txtSenha.Password) 
+                    { 
+                        AdicionaUsuario(); 
+                    }
+                    else
+                    {
+                        CaixaDeMensagem.CamposSenhaEConfirmarSenhaDiferentes();
+                    }
                 }
                 else
                 {
@@ -124,7 +131,7 @@ namespace mercearia_seu_joao.View
 
         private bool VerificaCampos()
         {
-            if (txtNome.Text != "" && txtEmail.Text != "" && txtSenha.Password != "" && txtConfirmarSenha.Password != "")
+            if (txtNome.Text != "" && txtEmail.Text != "" && txtSenha.Password != "" && txtConfirmarSenha.Password != "" && cbTipoUsuario.Text != "")
             {
                 return true;
 
@@ -171,15 +178,12 @@ namespace mercearia_seu_joao.View
             }
         }
 
-
-
         private void CadastrarUsuario()
         {
             string nome = txtNome.Text;
             string tipoUsuario = cbTipoUsuario.Text;
             string email = txtEmail.Text;
             string senha = txtSenha.Password;
-            string confirmarSenha = txtSenha.Password;
 
             bool usuarioExiste = ConsultasUsuario.VerificarUsuarioExistente(email);
             if (usuarioExiste == false)
@@ -187,29 +191,17 @@ namespace mercearia_seu_joao.View
                 bool validarCadastro = ConsultasUsuario.InserirUsuario(nome, tipoUsuario, email, senha);
                 if (validarCadastro == true)
                 {
-                    MessageBoxResult result = MessageBox.Show(
-                    "Usuario cadastrado com sucesso",
-                    "Informação!",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                    CaixaDeMensagem.ExibirMenssagemErroUsuarioCadastrado();
                 }
                 else
                 {
-                    MessageBoxResult result = MessageBox.Show(
-                        "Não foi possível fazer o cadastro, tente novamente mais tarde!",
-                        "Error!",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+                    CaixaDeMensagem.ExibirMenssagemErroUsuarioCadastrado();
                 }
             }
 
             else
             {
-                MessageBoxResult result = MessageBox.Show(
-                    "Email já existe no sistema!",
-                    "Atenção!",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning);
+                CaixaDeMensagem.UsuarioJaEstaCadastradoNoSistema();
             }
         }
 
