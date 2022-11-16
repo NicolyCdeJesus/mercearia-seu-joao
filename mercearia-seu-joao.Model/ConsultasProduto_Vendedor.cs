@@ -7,27 +7,26 @@ using System.Threading.Tasks;
 
 namespace mercearia_seu_joao.Model
 {
-    public class ConsultasUsuario
+    public class ConsultasProduto_Vendedor
     {
-        public static bool InserirUsuario(string nome, string tipoUsuario, string email, string senha)
+        // Cadastra o produto no banco de dados
+        public static bool InserirProduto(int id, string nome, int quantidade, int precoTotal)
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
             bool foiInserido = false;
             try
-            {   conexao.Open();
+            {
+                conexao.Open();
                 var comando = conexao.CreateCommand();
-                string senhaCriptografada = Criptografia.CriptografarMD5Senha(senha);
-
-
                 comando.CommandText = @"
-                INSERT INTO Usuario (nome, tipoUsuario, email, senha) 
-                VALUES(@nome,@tipoUsuario,@email,@senha)";
+                INSERT INTO Produto (id, nome, quantidade) 
+                VALUES(@id , @nome, @quantidade)";
+                comando.Parameters.AddWithValue("@id", id);
                 comando.Parameters.AddWithValue("@nome", nome);
-                comando.Parameters.AddWithValue("@tipoUsuario", tipoUsuario);
-                comando.Parameters.AddWithValue("@email", email);
-                comando.Parameters.AddWithValue("@senha", senhaCriptografada);
+                comando.Parameters.AddWithValue("@quantidade", quantidade);
+                comando.Parameters.AddWithValue("precoTotal", precoTotal);
+
                 var leitura = comando.ExecuteReader();
-                    
                 foiInserido = true;
             }
             catch (Exception e)
@@ -41,12 +40,17 @@ namespace mercearia_seu_joao.Model
                     conexao.Close();
                 }
             }
-
             return foiInserido;
         }
 
-        //Exclui um usuario do banco de dados - REMOVE
-        public static bool ExcluirUsuario(int id)
+
+        //public static bool AlterarProduto_(string text)
+        //{
+        //throw new NotImplementedException();
+        //}
+
+        //Exclui um produto do banco de dados - REMOVE
+        public static bool ExcluirProduto(int id)
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
             bool foiExcluido = false;
@@ -55,7 +59,7 @@ namespace mercearia_seu_joao.Model
                 conexao.Open();
                 var comando = conexao.CreateCommand();
                 comando.CommandText = @"
-                DELETE FROM Usuario WHERE id = @id";
+                DELETE FROM Produto WHERE id = @id";
                 comando.Parameters.AddWithValue("@id", id);
                 var leitura = comando.ExecuteReader();
                 foiExcluido = true;
@@ -71,33 +75,28 @@ namespace mercearia_seu_joao.Model
                     conexao.Close();
                 }
             }
-
             return foiExcluido;
         }
 
         //Altera um produto no banco de dados - UPDATE
-        public static bool AtualizarUsuario(int id, string nome, string tipoUsuario, string email, string senha)
+        public static bool AlterarProduto(int id, string nome, int quantidade, int precoTotal)
         {
-            // REFAZER COM OS NOMES CERTOS
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
-            bool foiAtualizado = false;
+            bool foiAlterado = false;
             try
             {
-                    conexao.Open();
-                    var comando = conexao.CreateCommand();
-                    string senhaCriptografada = Criptografia.CriptografarMD5Senha(senha);
-                    comando.CommandText = @"
-                    UPDATE Usuario
-                    SET nome = @nome, tipoUsuario = @tipoUsuario, email = @email, senha = @senha
+                conexao.Open();
+                var comando = conexao.CreateCommand();
+                comando.CommandText = @"
+                    UPDATE Produto
+                    SET nome = @nome, quantidade = @quantidade, precoTotal = @precoTotal
                     WHERE id = @id";
-                    comando.Parameters.AddWithValue("@id", id);
-                    comando.Parameters.AddWithValue("@nome", nome);
-                    comando.Parameters.AddWithValue("@tipoUsuario", tipoUsuario);
-                    comando.Parameters.AddWithValue("@email", email);
-                    comando.Parameters.AddWithValue("@senha", senhaCriptografada);
-                    var leitura = comando.ExecuteReader();
-
-                    foiAtualizado = true;
+                comando.Parameters.AddWithValue("@id", id);
+                comando.Parameters.AddWithValue("@nome", nome);
+                comando.Parameters.AddWithValue("@quantidade", quantidade);
+                comando.Parameters.AddWithValue("@precoTotal", precoTotal);
+                var leitura = comando.ExecuteReader();
+                foiAlterado = true;
             }
             catch (Exception e)
             {
@@ -110,33 +109,30 @@ namespace mercearia_seu_joao.Model
                     conexao.Close();
                 }
             }
-
-            return foiAtualizado;
+            return foiAlterado;
         }
 
-        //Retrona todos os produtos - READ
-        public static List<Usuario> ObterTodosUsuarios()
+        //Retorna todos os produtos - READ
+        public static List<produto_Vendedor> ObterTodosProdutos()
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
-            List<Usuario> listaDeUsuarios = new List<Usuario>();
+            List<produto_Vendedor> listaDeProdutos = new List<produto_Vendedor>();
 
             try
             {
                 conexao.Open();
                 var comando = conexao.CreateCommand();
                 comando.CommandText = @"
-                SELECT * FROM Usuario;";
+                SELECT * FROM Produto;";
                 var leitura = comando.ExecuteReader();
                 while (leitura.Read())
                 {
-                    Usuario usuario = new Usuario();
-                    usuario.id = leitura.GetInt32("id");
-                    usuario.nome = leitura.GetString("nome");
-                    usuario.tipoUsuario = leitura.GetString("tipoUsuario");
-                    usuario.email = leitura.GetString("email");
-                    usuario.senha = leitura.GetString("senha");
-
-                    listaDeUsuarios.Add(usuario);
+                    produto_Vendedor produto = new produto_Vendedor();
+                    produto.id = leitura.GetInt32("id");
+                    produto.nome = leitura.GetString("nome");
+                    produto.quantidade = leitura.GetInt32("quantidade");
+                    produto.precoTotal = leitura.GetInt32("precoTotal");
+                    listaDeProdutos.Add(produto);
                 }
             }
             catch (Exception e)
@@ -150,29 +146,24 @@ namespace mercearia_seu_joao.Model
                     conexao.Close();
                 }
             }
-
-            return listaDeUsuarios;
+            return listaDeProdutos;
         }
 
 
-
-
-
-        //A partir daqui o código vai cuidar da criptografia
-        public static bool VerificarUsuarioExistente(string email)
+        public static bool VerificarProdutoExistente(int id)
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
-            bool usuarioExiste = false;
+            bool produtoExiste = false;
             try
             {
                 conexao.Open();
                 var comando = conexao.CreateCommand();
-                comando.CommandText = @"Select * from Usuario Where email = @email";
-                comando.Parameters.AddWithValue("@email", email);
+                comando.CommandText = @"Select * from Produto Where id = @id";
+                comando.Parameters.AddWithValue("@id", id);
                 var leitura = comando.ExecuteReader();
                 while (leitura.Read())
                 {
-                    
+
                     break;
                 }
             }
@@ -188,27 +179,33 @@ namespace mercearia_seu_joao.Model
                     conexao.Close();
                 }
             }
-            return usuarioExiste;
-      }
+            return produtoExiste;
+        }
 
-        public void ValidarLogin()
+
+        public static bool AlterarProduto_(int quantidade, int precoTotal)
         {
             var conexao = new MySqlConnection(ConexaoBD.Connection.ConnectionString);
+            bool foiAlterado_ = false;
             try
             {
-                //abrindo comando para conectar
                 conexao.Open();
                 var comando = conexao.CreateCommand();
                 comando.CommandText = @"
-            select from Usuario where tipoUsuario = @tipoUsuario and id = @id";
-
+                    UPDATE Produto
+                    SET quantidade = @quantidade, precoTotal = @precoTotal
+                    WHERE id = @id";
+                comando.Parameters.AddWithValue("@quantidade", quantidade);
+                comando.Parameters.AddWithValue("@precoTotal", precoTotal);
                 var leitura = comando.ExecuteReader();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                foiAlterado_ = true;
             }
 
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
             finally
             {
                 if (conexao.State == System.Data.ConnectionState.Open)
@@ -216,10 +213,9 @@ namespace mercearia_seu_joao.Model
                     conexao.Close();
                 }
             }
+            return foiAlterado_;
+
 
         }
     }
-
-
 }
-

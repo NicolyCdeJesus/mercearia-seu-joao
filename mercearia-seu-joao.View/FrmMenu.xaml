@@ -11,7 +11,7 @@
             <ColumnDefinition Width="18*"/>
             <ColumnDefinition Width="157*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnSair" Content="" HorizontalAlignment="Left" Margin="575,366,0,0" VerticalAlignment="Top" Height="41" Width="44" Foreground="White" BorderBrush="White" Click="Sair" Grid.Column="1">
+        <Button x:Name="btnSair" Content="" HorizontalAlignment="Left" Margin="584,360,0,0" VerticalAlignment="Top" Height="33" Width="34" Foreground="White" BorderBrush="White" Click="Sair" Grid.Column="1">
             <Button.Background>
                 <ImageBrush ImageSource="/sair.png"/>
             </Button.Background>
@@ -21,8 +21,8 @@
                 <ImageBrush ImageSource="/produto.png"/>
             </Button.Background>
         </Button>
-        <Rectangle x:Name="AtualizaData" HorizontalAlignment="Left" Height="106" Margin="0,419,0,0" Stroke="#FF99C8E6" VerticalAlignment="Top" Width="700" OpacityMask="#FF99C8E6" Fill="#FF99C8E6" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="txtUsuarioData" HorizontalAlignment="Left" Margin="10,425,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontFamily="Corbel"/>
+        <Rectangle x:Name="AtualizaData" HorizontalAlignment="Left" Margin="0,398,0,0" Stroke="#FF99C8E6" Width="700" OpacityMask="#FF99C8E6" Fill="#FF99C8E6" Grid.ColumnSpan="2" Height="106" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtUsuarioData" HorizontalAlignment="Left" Margin="10,407,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontFamily="Corbel" Grid.ColumnSpan="2" Width="680"/>
         <Button x:Name="btnVender" Content="" HorizontalAlignment="Center" Margin="364,237,0,0" VerticalAlignment="Top" Height="88" Width="110" Foreground="White" BorderBrush="Black" Background="Black" Click="EfetuarVenda" Grid.Column="1">
             <Button.OpacityMask>
                 <ImageBrush ImageSource="/venda.png"/>
