@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 public class ConsultasProduto
 {
     //Cadastra o produto no banco de dados - CREATE
-    public static bool InserirProduto(string nome, string descricao, string fornecedor, float precounitario, int quantidade)
+    public static bool InserirProduto(string nome, string fornecedor, int quantidade, float precoUnitario)
     {
         var conexao = new
-       MySqlConnection(ConexaoBD.Connection.ConnectionString);
+        MySqlConnection(ConexaoBD.Connection.ConnectionString);
         bool foiInserido = false;
         try
         {
@@ -24,7 +24,7 @@ public class ConsultasProduto
             comando.Parameters.AddWithValue("@nome", nome);
             comando.Parameters.AddWithValue("@qtd", quantidade);
             comando.Parameters.AddWithValue("@fornecedor", fornecedor);
-            comando.Parameters.AddWithValue("@precoUnitario", precounitario);
+            comando.Parameters.AddWithValue("@precoUnitario", precoUnitario);
             var leitura = comando.ExecuteReader();
             foiInserido = true;
         }
@@ -91,6 +91,7 @@ public class ConsultasProduto
             comando.Parameters.AddWithValue("@fabricante", fornecedor);
             comando.Parameters.AddWithValue("@precoUnitario", precounitario);
             var leitura = comando.ExecuteReader();
+
             foiAtualizado = true;
         }
         catch (Exception e)
@@ -125,7 +126,7 @@ public class ConsultasProduto
                 produto.id = leitura.GetInt32("id");
                 produto.nome = leitura.GetString("nome");
                 produto.qtd = leitura.GetInt32("qtd");               
-                produto.precoUnitario = leitura.GetFloat("@precoUnitario");
+                produto.precoUnitario = leitura.GetDouble("precoUnitario");
                 produto.fornecedor = leitura.GetString("fornecedor");
 
                 listaDeProdutos.Add(produto);
@@ -143,10 +144,5 @@ public class ConsultasProduto
             }
         }
         return listaDeProdutos;
-    }
-
-    internal static bool NovoProduto(string text1, string text2, int v1, float v2)
-    {
-        throw new NotImplementedException();
     }
 }

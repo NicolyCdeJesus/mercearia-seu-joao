@@ -55,7 +55,7 @@ namespace mercearia_seu_joao.View
 
         private void AlterarProduto(object sender, RoutedEventArgs e)
         {
-            if (txtID.Text != "")
+            /*if (txtID.Text != "")
             {
                 int id = int.Parse(txtID.Text);
                 MessageBoxResult result = MessageBox.Show(
@@ -66,12 +66,43 @@ namespace mercearia_seu_joao.View
                 if (result == MessageBoxResult.Yes)
                 {
                     bool foiAtualizado = ConsultasProduto.AtualizarProduto(
-                    id,
+                    int.Parse(txtID.Text),
                     txtNomeProduto.Text,
                     txtFornecedor.Text,
                     int.Parse(txtQuantidade.Text),
                     float.Parse(txtPrecoUnitario.Text)
                     );
+
+                    if (foiAtualizado == true)
+                    {
+                        CaixaDeMensagem.ExibirMenssagemProdutoAtualizado();
+                        LimpaTodosOsCampos();
+                        AtualizaDataGrid();
+                    }
+                    else
+                    {
+                        CaixaDeMensagem.ExibirMenssagemErroProdutoAtualizado();
+                    }
+                }
+            }*/
+            if (txtID.Text != "")
+            {
+                int id = int.Parse(txtID.Text);
+                MessageBoxResult result = MessageBox.Show(
+                    "Deseja alterar o produto id: {id} ?",
+                    "Alterar o usuario",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
+                {
+                    bool foiAtualizado = ConsultasProduto.AtualizarProduto(
+                        id,
+                        txtNomeProduto.Text,
+                        txtFornecedor.Text,
+                        int.Parse(txtQuantidade.Text),
+                        float.Parse(txtPrecoUnitario.Text)
+                        );
+
                     if (foiAtualizado == true)
                     {
                         CaixaDeMensagem.ExibirMenssagemProdutoAtualizado();
@@ -135,7 +166,7 @@ namespace mercearia_seu_joao.View
         }
         private void AdicionaProduto()
         {
-            bool foiInserido = ConsultasProduto.NovoProduto(
+            bool foiInserido = ConsultasProduto.InserirProduto(
             txtNomeProduto.Text,
             txtFornecedor.Text,
             int.Parse(txtQuantidade.Text),
